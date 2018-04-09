@@ -33,14 +33,21 @@ class Player extends Component {
   }
 
   render() {
+    const controls = this.props.battleResolutionIsHidden ? (
+      <div id="Controls">
+        <button onClick={this.handleAttackClick}>Attack</button>
+        <button onClick={this.handleDefendClick}>Defend</button>
+        <button onClick={this.handleFleeClick}>Flee</button>
+      </div>
+    ) : (
+      <div id="Controls">
+      </div>
+    ) ;
+
     return (
       <div id="Player">
         <div id="Title">Player Window</div>
-        <div id="Controls">
-          <button onClick={this.handleAttackClick}>Attack</button>
-          <button onClick={this.handleDefendClick}>Defend</button>
-          <button onClick={this.handleFleeClick}>Flee</button>
-        </div>
+        {controls}
       </div>
     );
   }

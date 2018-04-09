@@ -8,10 +8,15 @@ class BattleResolution extends Component {
       blank: null
     }
   }
-  
+
   render() {
     return (
       <div id="BattleResolution">
+        WOOOT
+        WOOOT
+        WOOOT
+        WOOOT
+        WOOOT
         WOOOT
       </div>
     );

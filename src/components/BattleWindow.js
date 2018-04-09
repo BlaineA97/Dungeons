@@ -10,11 +10,11 @@ class BattleWindow extends Component {
     super(props);
     this.state = {
       turnNumber: 1,
-      playerHp: 100,
+      playerHp: 1,
       playerWeaponDmg: 12,
       playerArmorDef: 8,
       playerHit: 0,
-      enemyHp: 100,
+      enemyHp: 1,
       enemyWeaponDmg: 6,
       enemyArmorDef: 4,
       enemyHit: 0,
@@ -29,28 +29,28 @@ class BattleWindow extends Component {
     this.toggleTurn = this.toggleTurn.bind(this);
   }
 
-  componentDidUpdate() { // Checks if Player or Enemy is dead
-    if (this.state.playerHp <= 0) {
-      this.setState({
-        battleResolutionIsHidden: !this.state.battleResolutionIsHidden
-      })
-      // Player is dead
-    } else if (this.state.enemyHp <= 0) {
-      this.setState({
-        battleResolutionIsHidden: !this.state.battleResolutionIsHidden
-      })
-      // Enemy is dead
+  componentDidUpdate(prevProps, prevState) { // Checks if Player or Enemy is dead
+    if (this.state.battleResolutionIsHidden == true) {
+      if (this.state.playerHp <= 0) { // Player is Dead
+        this.setState({
+          battleResolutionIsHidden: !this.state.battleResolutionIsHidden
+        })
+      } else if (this.state.enemyHp <= 0) { // Enemy is Dead
+        this.setState({
+          battleResolutionIsHidden: !this.state.battleResolutionIsHidden
+        })
+      }
     }
   }
 
   toggleTurn() {
-      if (this.state.turn === "player") {
-        this.setState({ turn: "enemy"});
-        console.log("Current Turn: "+ this.state.turn)
-      } else {
-        this.setState({ turn: "player", turnNumber: this.state.turnNumber+1  });
-        console.log("Current Turn: "+ this.state.turn)
-      }
+    if (this.state.turn === "player") {
+      this.setState({ turn: "enemy"});
+      console.log("Current Turn: "+ this.state.turn)
+    } else {
+      this.setState({ turn: "player", turnNumber: this.state.turnNumber+1  });
+      console.log("Current Turn: "+ this.state.turn)
+    }
   }
 
   updatePlayerHp(roll) {
@@ -92,10 +92,11 @@ class BattleWindow extends Component {
         {!this.state.battleResolutionIsHidden && <BattleResolution
           playerHp={this.state.playerHp}
           enemyHp={this.state.enemyHp}
-          rollDice={this.rollDice}/>}
+          rollDice={this.rollDice}/> }
         <div id="LeftWindow">
           <p>{this.state.playerHp}</p>
           <Player
+            battleResolutionIsHidden={this.state.battleResolutionIsHidden}
             toggleTurn={this.toggleTurn}
             updateEnemyHp={this.updateEnemyHp}
             enemyHp={this.state.enemyHp}
