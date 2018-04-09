@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './BattleWindow.css';
+import Player from './player/Player';
 
 class BattleWindow extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class BattleWindow extends Component {
   render() {
     return (
       <div id="BattleWindow">
-        <div id="LeftWindow">Player Window</div>
+        <div id="LeftWindow"><Player/></div>
         <div id="CenterWindow">Battle Calculator</div>
         <div id="RightWindow">Enemy Window</div>
       </div>

@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-#Blank {
+#Player {
   min-height: 100vh; /* Allows the footer to exist in the proper place */
   width: 100%;
   display: flex;
