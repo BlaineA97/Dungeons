@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#BattleResolution {
+  min-height: 100vh; /* Allows the footer to exist in the proper place */
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  vertical-align: middle;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: green solid 5px;
+}

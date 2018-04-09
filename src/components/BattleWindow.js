@@ -3,6 +3,7 @@ import './BattleWindow.css';
 import Player from './player/Player';
 import Enemy from './enemy/Enemy';
 import Log from './log/Log';
+import BattleResolution from './BattleResolution';
 
 class BattleWindow extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class BattleWindow extends Component {
       enemyArmorDef: 4,
       enemyHit: 0,
       completeLog: [],
+      battleResolutionIsHidden: true
     }
     this.updatePlayerHp = this.updatePlayerHp.bind(this);
     this.updateEnemyHp = this.updateEnemyHp.bind(this);
@@ -36,6 +38,12 @@ class BattleWindow extends Component {
       alert("You killed the enemy!")
       // Enemy is dead
     }
+  }
+
+  toggleBattleResolutionIsHidden() {
+    this.setState({
+      battleResolutionIsHidden: !this.state.battleResolutionIsHidden
+    })
   }
 
   updatePlayerHp(roll) {
@@ -103,6 +111,10 @@ class BattleWindow extends Component {
   render() {
     return (
       <div id="BattleWindow">
+        {!this.state.battleResolutionIsHidden && <BattleResolution
+          playerHp={this.state.playerHp}
+          playerHp={this.state.enemyHp}
+          rollDice={this.rollDice}/>}
         <div id="LeftWindow">
           <p>{this.state.playerHp}</p>
           <Player
