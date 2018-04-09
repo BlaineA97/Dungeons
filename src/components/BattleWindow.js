@@ -55,13 +55,15 @@ class BattleWindow extends Component {
 
   randomEnemyAction() {
     let action = this.rollDice(3);
-    console.log('randomEnemyAction action ' + action)
     // console.log('randomEnemyAction playerDefenseRoll ' + playerDefenseRoll)
     if (action === 0) {
+      console.log('randomEnemyAction action Attack')
       this.enemyAttack(this.rollDice(this.state.enemyWeaponDmg))
     } else if (action === 1) {
+      console.log('randomEnemyAction action Defense')
       this.enemyDefend(this.rollDice(this.state.enemyArmorDef))
     } else if (action === 2) {
+      console.log('randomEnemyAction action Flee')
       this.enemyFlee(this.rollDice(21))
     }
   }
@@ -70,10 +72,12 @@ class BattleWindow extends Component {
     console.log('enemyAttack ' + attackRoll)
     let newPlayerHp = this.state.playerHp - this.rollDice(attackRoll);
     this.updatePlayerHp(newPlayerHp);
+    this.updateLog("enemyAttack", attackRoll);
   }
 
   enemyDefend(defenseRoll) {
     console.log('enemyDefend ' + defenseRoll)
+    this.updateLog("enemyDefense", defenseRoll);
     // let newPlayerHp = this.rollDice(defenseRoll) - this.state.playerArmorDef
     // newPlayerHp = this.state.playerHp
   }
@@ -84,12 +88,14 @@ class BattleWindow extends Component {
 
   updateLog(logType, roll) {
     let newLog = this.state.completeLog
-    if (logType === "defense") {
-      console.log("Player defended for "+roll)
+    if (logType === "playerDefense") {
       newLog.push("Player defended for "+roll)
-    } else if (logType === "attack") {
-      console.log("Player attacked for "+roll)
+    } else if (logType === "enemyDefense") {
+      newLog.push("Enemy defended for "+roll)
+    } else if (logType === "playerAttack") {
       newLog.push("Player attacked for "+roll)
+    } else if (logType === "enemyAttack") {
+      newLog.push("Enemy attacked for "+roll)
     }
     this.setState({ completeLog: newLog })
   }
