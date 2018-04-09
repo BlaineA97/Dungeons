@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#BattleWindow {
+  margin-top: 15px;
+  min-height: 100vh; /* Allows the footer to exist in the proper place */
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  vertical-align: middle;
+  text-align: center;
+  border: red solid 1px;
+}
+#LeftWindow {
+  flex-grow: 1;
+  border: blue solid 1px;
+}
+#CenterWindow {
+  flex-grow: 1;
+  border: yellow solid 1px;
+}
+#RightWindow {
+  flex-grow: 1;
+  border: green solid 1px;
+}
