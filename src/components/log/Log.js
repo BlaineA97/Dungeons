@@ -16,6 +16,7 @@ class Log extends Component {
     return (
       <div id="Log">
         <p id="Title">Battle Log</p>
+        <p>Turn: {this.props.turnNumber}</p>
         <div id="LogDisplay">
           <ul>{updatedLogDisplay}</ul>
         </div>

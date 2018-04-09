@@ -16,17 +16,20 @@ class Player extends Component {
     let playerAttackRoll = this.props.rollDice(21)
     let newEnemyHp = this.props.enemyHp - playerAttackRoll;
     this.props.updateEnemyHp(newEnemyHp);
-    this.props.randomEnemyAction();
     this.props.updateLog("playerAttack", playerAttackRoll);
+    this.props.toggleTurn()
   }
 
   handleDefendClick() {
     let playerDefenseRoll = this.props.rollDice(this.props.playerArmorDef);
-    this.props.randomEnemyAction(playerDefenseRoll);
     this.props.updateLog("playerDefense", playerDefenseRoll);
+    this.props.toggleTurn()
   }
 
   handleFleeClick() {
+    let playerFleeRoll = this.props.rollDice(5);
+    this.props.updateLog("playerFlee", playerFleeRoll);
+    this.props.toggleTurn()
   }
 
   render() {

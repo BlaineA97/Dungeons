@@ -9,6 +9,7 @@ class BattleWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      turnNumber: 1,
       playerHp: 100,
       playerWeaponDmg: 12,
       playerArmorDef: 8,
@@ -18,32 +19,38 @@ class BattleWindow extends Component {
       enemyArmorDef: 4,
       enemyHit: 0,
       completeLog: [],
-      battleResolutionIsHidden: true
+      turn: "player",
+      battleResolutionIsHidden: true,
     }
     this.updatePlayerHp = this.updatePlayerHp.bind(this);
     this.updateEnemyHp = this.updateEnemyHp.bind(this);
-    this.enemyAttack = this.enemyAttack.bind(this);
-    this.enemyDefend = this.enemyDefend.bind(this);
-    this.enemyFlee = this.enemyFlee.bind(this);
-    this.randomEnemyAction = this.randomEnemyAction.bind(this);
     this.rollDice = this.rollDice.bind(this);
     this.updateLog = this.updateLog.bind(this);
+    this.toggleTurn = this.toggleTurn.bind(this);
   }
 
   componentDidUpdate() { // Checks if Player or Enemy is dead
     if (this.state.playerHp <= 0) {
-      alert("You are dead!")
+      this.setState({
+        battleResolutionIsHidden: !this.state.battleResolutionIsHidden
+      })
       // Player is dead
     } else if (this.state.enemyHp <= 0) {
-      alert("You killed the enemy!")
+      this.setState({
+        battleResolutionIsHidden: !this.state.battleResolutionIsHidden
+      })
       // Enemy is dead
     }
   }
 
-  toggleBattleResolutionIsHidden() {
-    this.setState({
-      battleResolutionIsHidden: !this.state.battleResolutionIsHidden
-    })
+  toggleTurn() {
+      if (this.state.turn === "player") {
+        this.setState({ turn: "enemy"});
+        console.log("Current Turn: "+ this.state.turn)
+      } else {
+        this.setState({ turn: "player", turnNumber: this.state.turnNumber+1  });
+        console.log("Current Turn: "+ this.state.turn)
+      }
   }
 
   updatePlayerHp(roll) {
@@ -61,39 +68,6 @@ class BattleWindow extends Component {
     return roll
   }
 
-  randomEnemyAction() {
-    let action = this.rollDice(3);
-    // console.log('randomEnemyAction playerDefenseRoll ' + playerDefenseRoll)
-    if (action === 0) {
-      console.log('randomEnemyAction action Attack')
-      this.enemyAttack(this.rollDice(this.state.enemyWeaponDmg))
-    } else if (action === 1) {
-      console.log('randomEnemyAction action Defense')
-      this.enemyDefend(this.rollDice(this.state.enemyArmorDef))
-    } else if (action === 2) {
-      console.log('randomEnemyAction action Flee')
-      this.enemyFlee(this.rollDice(21))
-    }
-  }
-
-  enemyAttack(attackRoll) {
-    console.log('enemyAttack ' + attackRoll)
-    let newPlayerHp = this.state.playerHp - this.rollDice(attackRoll);
-    this.updatePlayerHp(newPlayerHp);
-    this.updateLog("enemyAttack", attackRoll);
-  }
-
-  enemyDefend(defenseRoll) {
-    console.log('enemyDefend ' + defenseRoll)
-    this.updateLog("enemyDefense", defenseRoll);
-    // let newPlayerHp = this.rollDice(defenseRoll) - this.state.playerArmorDef
-    // newPlayerHp = this.state.playerHp
-  }
-
-  enemyFlee(fleeRoll) {
-    console.log('enemyFlee ' + fleeRoll)
-  }
-
   updateLog(logType, roll) {
     let newLog = this.state.completeLog
     if (logType === "playerDefense") {
@@ -104,6 +78,10 @@ class BattleWindow extends Component {
       newLog.push("Player attacked for "+roll)
     } else if (logType === "enemyAttack") {
       newLog.push("Enemy attacked for "+roll)
+    } else if (logType === "playerFlee") {
+      newLog.push("Player Flee for "+roll)
+    } else if (logType === "enemyFlee") {
+      newLog.push("Enemy Flee for "+roll)
     }
     this.setState({ completeLog: newLog })
   }
@@ -113,11 +91,12 @@ class BattleWindow extends Component {
       <div id="BattleWindow">
         {!this.state.battleResolutionIsHidden && <BattleResolution
           playerHp={this.state.playerHp}
-          playerHp={this.state.enemyHp}
+          enemyHp={this.state.enemyHp}
           rollDice={this.rollDice}/>}
         <div id="LeftWindow">
           <p>{this.state.playerHp}</p>
           <Player
+            toggleTurn={this.toggleTurn}
             updateEnemyHp={this.updateEnemyHp}
             enemyHp={this.state.enemyHp}
             playerArmorDef={this.state.playerArmorDef}
@@ -127,12 +106,22 @@ class BattleWindow extends Component {
         </div>
         <div id="CenterWindow">
           <Log
+            turnNumber={this.state.turnNumber}
             completeLog={this.state.completeLog}
           />
         </div>
         <div id="RightWindow">
           <p>{this.state.enemyHp}</p>
-          <Enemy />
+          <Enemy
+          toggleTurn={this.toggleTurn}
+          turn={this.state.turn}
+          playerHp={this.state.playerHp}
+          enemyHp={this.state.enemyHp}
+          updatePlayerHp={this.updatePlayerHp}
+          rollDice={this.rollDice}
+          updateLog={this.updateLog}
+          enemyWeaponDmg={this.state.enemyWeaponDmg}
+          enemyArmorDef={this.state.enemyArmorDef} />
         </div>
       </div>
     );
