@@ -19,18 +19,24 @@ class BattleWindow extends Component {
     this.rollDice = this.rollDice.bind(this);
   }
 
+  componentDidUpdate() { // Checks if Player or Enemy is dead
+    if (this.state.playerHp <= 0) {
+      alert("You are dead!")
+      // Player is dead
+    } else if (this.state.enemyHp <= 0) {
+      alert("You killed the enemy!")
+      // Enemy is dead
+    }
+  }
+
   updatePlayerHp(hit) {
     console.log("updatePlayerHp")
-    this.setState({
-      playerHp: hit
-    });
+    this.setState({ playerHp: hit });
   }
 
   updateEnemyHp(hit) {
     console.log("updateEnemyHp")
-    this.setState({
-      enemyHp: hit
-    });
+    this.setState({ enemyHp: hit });
   }
 
   rollDice(number) {
@@ -40,14 +46,14 @@ class BattleWindow extends Component {
 
   randomEnemyAction() {
     let action = this.rollDice(3);
-    let attackRoll = this.rollDice(21);
+    let roll = this.rollDice(21);
     console.log('Enemy action roll is ' + action)
     if (action === 0) {
-      this.enemyAttack(this.rollDice(attackRoll))
+      this.enemyAttack(this.rollDice(roll))
     } else if (action === 1) {
-      this.enemyDefend(this.rollDice(attackRoll))
+      this.enemyDefend(this.rollDice(roll))
     } else if (action === 2) {
-      this.enemyFlee(this.rollDice(attackRoll))
+      this.enemyFlee(this.rollDice(roll))
     }
   }
 
