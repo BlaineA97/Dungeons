@@ -15,5 +15,31 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  border: green solid 5px;
+  border: green solid 1px;
+  border-radius: 50px;
+}
+#OptionsContainer {
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+  margin: 50px;
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 300px;
+  max-height: 300px;
+  border: red solid 1px;
+  border-radius: 100%;
+  background-color: lightblue;
+}
+#Outcome {
+  margin-top: 50px;
+}
+#Options {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+.OptionItem {
+  margin-left: 10px;
+  margin-right: 10px;
 }

@@ -12,12 +12,14 @@ class BattleResolution extends Component {
   render() {
     return (
       <div id="BattleResolution">
-        WOOOT
-        WOOOT
-        WOOOT
-        WOOOT
-        WOOOT
-        WOOOT
+        <div id="OptionsContainer">
+          <div id="Outcome">Outcome</div>
+          <div id="Options">
+            <button id="OptionOne" className="OptionItem">One</button>
+            <button id="OptionTwo" className="OptionItem">Two</button>
+            <button id="OptionThree" className="OptionItem">Three</button>
+          </div>
+        </div>
       </div>
     );
   }
