@@ -41,16 +41,15 @@ class BattleWindow extends Component {
           <p>{this.state.playerHp}</p>
           <Player
             updateEnemyHp={this.updateEnemyHp}
+            updatePlayerHp={this.updatePlayerHp}
+            playerHp={this.state.playerHp}
             enemyHp={this.state.enemyHp}
             rollDice={this.rollDice} />
         </div>
         <div id="CenterWindow">Battle Calculator</div>
         <div id="RightWindow">
           <p>{this.state.enemyHp}</p>
-          <Enemy
-            updatePlayerHp={this.updatePlayerHp}
-            playerHp={this.state.playerHp}
-            rollDice={this.rollDice} />
+          <Enemy />
         </div>
       </div>
     );

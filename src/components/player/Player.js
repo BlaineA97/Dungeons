@@ -13,6 +13,8 @@ class Player extends Component {
   handleClick() {
     let newEnemyHp = this.props.enemyHp - this.props.rollDice(21);
     this.props.updateEnemyHp(newEnemyHp);
+    let newPlayerHp = this.props.playerHp - this.props.rollDice(21);
+    this.props.updatePlayerHp(newPlayerHp);
   }
 
   render() {
