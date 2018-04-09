@@ -7,13 +7,26 @@ class Player extends Component {
     this.state = {
       blank: null
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleAttackClick = this.handleAttackClick.bind(this);
+    this.handleDefendClick = this.handleDefendClick.bind(this);
+    this.handleFleeClick = this.handleFleeClick.bind(this);
   }
 
-  handleClick() {
-    let newEnemyHp = this.props.enemyHp - this.props.rollDice(21);
+  handleAttackClick() {
+    let playerAttackRoll = this.props.rollDice(21)
+    let newEnemyHp = this.props.enemyHp - playerAttackRoll;
     this.props.updateEnemyHp(newEnemyHp);
     this.props.randomEnemyAction();
+    this.props.updateLog("attack", playerAttackRoll);
+  }
+
+  handleDefendClick() {
+    let playerDefenseRoll = this.props.rollDice(this.props.playerArmorDef);
+    this.props.randomEnemyAction(playerDefenseRoll);
+    this.props.updateLog("defense", playerDefenseRoll);
+  }
+
+  handleFleeClick() {
   }
 
   render() {
@@ -21,7 +34,9 @@ class Player extends Component {
       <div id="Player">
         Player Window
         <div>
-          <button onClick={this.handleClick}>Attack</button>
+          <button onClick={this.handleAttackClick}>Attack</button>
+          <button onClick={this.handleDefendClick}>Defend</button>
+          <button onClick={this.handleFleeClick}>Flee</button>
         </div>
       </div>
     );
