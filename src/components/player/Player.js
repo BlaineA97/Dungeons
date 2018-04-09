@@ -6,12 +6,22 @@ class Player extends Component {
     super(props);
     this.state = {
       blank: null
-    }
+    };
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange(e) {
+    const playerHp = e.target.value;
+    this.props.updatePlayerHp(playerHp);
+  }
+
   render() {
     return (
       <div id="Player">
         Player Window
+        <div>
+          <input type="text" onChange={this.handleChange} />
+        </div>
       </div>
     );
   }
