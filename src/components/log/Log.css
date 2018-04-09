@@ -3,15 +3,17 @@
   padding: 0;
 }
 
-#Blank {
+#Log {
   min-height: 100vh; /* Allows the footer to exist in the proper place */
   width: 100%;
-  display: flex;
   justify-content: space-around;
   vertical-align: middle;
   text-align: center;
   border: red solid 1px;
 }
-.logEntry {
-  flex-grow: 1;
+.Title {
+  width: 100%;
+}
+#LogDisplay {
+  font-size: .7em;
 }

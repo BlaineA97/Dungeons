@@ -15,8 +15,8 @@ class Log extends Component {
     updatedLogDisplay.reverse();
     return (
       <div id="Log">
-        <p>Battle Log</p>
-        <div>
+        <p id="Title">Battle Log</p>
+        <div id="LogDisplay">
           <ul>{updatedLogDisplay}</ul>
         </div>
       </div>

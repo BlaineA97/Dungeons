@@ -7,8 +7,15 @@
   min-height: 100vh; /* Allows the footer to exist in the proper place */
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   vertical-align: middle;
   text-align: center;
   border: red solid 1px;
+}
+#Title {
+  width: 100%;
+}
+#Controls {
+  width: 100%;
 }

@@ -32,8 +32,8 @@ class Player extends Component {
   render() {
     return (
       <div id="Player">
-        Player Window
-        <div>
+        <div id="Title">Player Window</div>
+        <div id="Controls">
           <button onClick={this.handleAttackClick}>Attack</button>
           <button onClick={this.handleDefendClick}>Defend</button>
           <button onClick={this.handleFleeClick}>Flee</button>

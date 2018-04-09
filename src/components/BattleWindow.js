@@ -16,7 +16,7 @@ class BattleWindow extends Component {
       enemyWeaponDmg: 6,
       enemyArmorDef: 4,
       enemyHit: 0,
-      completeLog: ["bob"],
+      completeLog: [],
     }
     this.updatePlayerHp = this.updatePlayerHp.bind(this);
     this.updateEnemyHp = this.updateEnemyHp.bind(this);
@@ -38,14 +38,14 @@ class BattleWindow extends Component {
     }
   }
 
-  updatePlayerHp(hit) {
+  updatePlayerHp(roll) {
     console.log("updatePlayerHp")
-    this.setState({ playerHp: hit });
+    this.setState({ playerHp: roll });
   }
 
-  updateEnemyHp(hit) {
+  updateEnemyHp(roll) {
     console.log("updateEnemyHp")
-    this.setState({ enemyHp: hit });
+    this.setState({ enemyHp: roll });
   }
 
   rollDice(number) {
@@ -83,8 +83,7 @@ class BattleWindow extends Component {
   }
 
   updateLog(logType, roll) {
-    let newLog;
-    newLog = this.state.completeLog
+    let newLog = this.state.completeLog
     if (logType === "defense") {
       console.log("Player defended for "+roll)
       newLog.push("Player defended for "+roll)
