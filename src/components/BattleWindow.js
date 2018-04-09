@@ -27,6 +27,7 @@ class BattleWindow extends Component {
     this.rollDice = this.rollDice.bind(this);
     this.updateLog = this.updateLog.bind(this);
     this.toggleTurn = this.toggleTurn.bind(this);
+    this.newGame = this.newGame.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) { // Checks if Player or Enemy is dead
@@ -86,13 +87,23 @@ class BattleWindow extends Component {
     this.setState({ completeLog: newLog })
   }
 
+  newGame() {
+    this.setState({
+      enemyHp: 100,
+      playerHp: 100,
+      turnNumber: 1,
+      turn: "player",
+      battleResolutionIsHidden: true,
+      completeLog: []
+    })
+  }
+
   render() {
     return (
       <div id="BattleWindow">
         {!this.state.battleResolutionIsHidden && <BattleResolution
-          playerHp={this.state.playerHp}
-          enemyHp={this.state.enemyHp}
-          rollDice={this.rollDice}/> }
+          newGame={this.newGame}
+        />}
         <div id="LeftWindow">
           <p>{this.state.playerHp}</p>
           <Player

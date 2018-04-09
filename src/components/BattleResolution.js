@@ -15,7 +15,7 @@ class BattleResolution extends Component {
         <div id="OptionsContainer">
           <div id="Outcome">Outcome</div>
           <div id="Options">
-            <button id="OptionOne" className="OptionItem">One</button>
+            <button id="OptionOne" className="OptionItem" onClick={this.props.newGame}>New Game</button>
             <button id="OptionTwo" className="OptionItem">Two</button>
             <button id="OptionThree" className="OptionItem">Three</button>
           </div>
