@@ -7,12 +7,21 @@ class Player extends Component {
     this.state = {
       blank: null
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleChange(e) {
-    const playerHp = e.target.value;
-    this.props.updatePlayerHp(playerHp);
+  handleClick() {
+    console.log('handleClick')
+    let newPlayerHp = this.props.currentPlayerHp;
+    let damage = this.rollDice(21);
+    console.log({damage, newPlayerHp})
+    newPlayerHp = newPlayerHp - damage;
+    this.props.updatePlayerHp(newPlayerHp);
+  }
+
+  rollDice(number) {
+    let roll = Math.floor(Math.random() * Math.floor(number));
+    return roll
   }
 
   render() {
@@ -20,7 +29,7 @@ class Player extends Component {
       <div id="Player">
         Player Window
         <div>
-          <input type="text" onChange={this.handleChange} />
+          <button onClick={this.handleClick}>Attack</button>
         </div>
       </div>
     );
