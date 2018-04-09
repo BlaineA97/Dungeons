@@ -14,7 +14,7 @@
   border: red solid 1px;
 }
 #LeftWindow {
-  flex-grow: 1;
+  flex-grow: 2;
   border: blue solid 1px;
 }
 #CenterWindow {
@@ -22,6 +22,6 @@
   border: yellow solid 1px;
 }
 #RightWindow {
-  flex-grow: 1;
+  flex-grow: 2;
   border: green solid 1px;
 }

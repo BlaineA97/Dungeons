@@ -12,6 +12,10 @@ class BattleWindow extends Component {
     }
     this.updatePlayerHp = this.updatePlayerHp.bind(this);
     this.updateEnemyHp = this.updateEnemyHp.bind(this);
+    this.enemyAttack = this.enemyAttack.bind(this);
+    this.enemyDefend = this.enemyDefend.bind(this);
+    this.enemyFlee = this.enemyFlee.bind(this);
+    this.randomEnemyAction = this.randomEnemyAction.bind(this);
     this.rollDice = this.rollDice.bind(this);
   }
 
@@ -34,6 +38,33 @@ class BattleWindow extends Component {
     return roll
   }
 
+  randomEnemyAction() {
+    let action = this.rollDice(3);
+    let attackRoll = this.rollDice(21);
+    console.log('Enemy action roll is ' + action)
+    if (action === 0) {
+      this.enemyAttack(this.rollDice(attackRoll))
+    } else if (action === 1) {
+      this.enemyDefend(this.rollDice(attackRoll))
+    } else if (action === 2) {
+      this.enemyFlee(this.rollDice(attackRoll))
+    }
+  }
+
+  enemyAttack(attackRoll) {
+    console.log('enemyAttack ' + attackRoll)
+    let newPlayerHp = this.state.playerHp - this.rollDice(attackRoll);
+    this.updatePlayerHp(newPlayerHp)
+  }
+
+  enemyDefend(defenseRoll) {
+    console.log('enemyDefend ' + defenseRoll)
+  }
+
+  enemyFlee(fleeRoll) {
+    console.log('enemyFlee ' + fleeRoll)
+  }
+
   render() {
     return (
       <div id="BattleWindow">
@@ -41,10 +72,9 @@ class BattleWindow extends Component {
           <p>{this.state.playerHp}</p>
           <Player
             updateEnemyHp={this.updateEnemyHp}
-            updatePlayerHp={this.updatePlayerHp}
-            playerHp={this.state.playerHp}
             enemyHp={this.state.enemyHp}
-            rollDice={this.rollDice} />
+            rollDice={this.rollDice}
+            randomEnemyAction={this.randomEnemyAction}/>
         </div>
         <div id="CenterWindow">Battle Calculator</div>
         <div id="RightWindow">
