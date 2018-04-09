@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Player.css';
+import './Enemy.css';
 
-class Player extends Component {
+class Enemy extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,14 +11,14 @@ class Player extends Component {
   }
 
   handleClick() {
-    let newEnemyHp = this.props.enemyHp - this.props.rollDice(21);
+    let newEnemyHp = this.props.currentEnemyHp - this.rollDice(21);;
     this.props.updateEnemyHp(newEnemyHp);
   }
 
   render() {
     return (
-      <div id="Player">
-        Player Window
+      <div id="Enemy">
+        Enemy Window
         <div>
           <button onClick={this.handleClick}>Attack</button>
         </div>
@@ -27,4 +27,4 @@ class Player extends Component {
   }
 }
 
-export default Player;
+export default Enemy;

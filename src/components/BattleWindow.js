@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import './BattleWindow.css';
 import Player from './player/Player';
+import Enemy from './enemy/Enemy';
 
 class BattleWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
       playerHp: 10,
-      enemyHp: 10
+      enemyHp: 100
     }
     this.updatePlayerHp = this.updatePlayerHp.bind(this);
+    this.updateEnemyHp = this.updateEnemyHp.bind(this);
+    this.rollDice = this.rollDice.bind(this);
   }
 
   updatePlayerHp(hit) {
@@ -19,16 +22,36 @@ class BattleWindow extends Component {
     });
   }
 
+  updateEnemyHp(hit) {
+    console.log("updateEnemyHp")
+    this.setState({
+      enemyHp: hit
+    });
+  }
+
+  rollDice(number) {
+    let roll = Math.floor(Math.random() * Math.floor(number));
+    return roll
+  }
+
   render() {
     return (
       <div id="BattleWindow">
         <div id="LeftWindow">
           <p>{this.state.playerHp}</p>
-          <Player 
-            updatePlayerHp={this.updatePlayerHp} currentPlayerHp={this.state.playerHp} />
+          <Player
+            updateEnemyHp={this.updateEnemyHp}
+            enemyHp={this.state.enemyHp}
+            rollDice={this.rollDice} />
         </div>
         <div id="CenterWindow">Battle Calculator</div>
-        <div id="RightWindow">Enemy Window</div>
+        <div id="RightWindow">
+          <p>{this.state.enemyHp}</p>
+          <Enemy
+            updatePlayerHp={this.updatePlayerHp}
+            playerHp={this.state.playerHp}
+            rollDice={this.rollDice} />
+        </div>
       </div>
     );
   }
