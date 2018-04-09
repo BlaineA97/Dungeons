@@ -11,11 +11,7 @@ class Player extends Component {
   }
 
   handleClick() {
-    console.log('handleClick')
-    let newPlayerHp = this.props.currentPlayerHp;
-    let damage = this.rollDice(21);
-    console.log({damage, newPlayerHp})
-    newPlayerHp = newPlayerHp - damage;
+    let newPlayerHp = this.props.currentPlayerHp - this.rollDice(21);;
     this.props.updatePlayerHp(newPlayerHp);
   }
 
