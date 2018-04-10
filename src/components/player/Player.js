@@ -27,8 +27,14 @@ class Player extends Component {
   }
 
   handleFleeClick() {
-    let playerFleeRoll = this.props.rollDice(5);
-    this.props.updateLog("playerFlee", playerFleeRoll);
+    let playerFleeRoll = this.props.rollDice(21);
+    let fleeDifficultyRoll = this.props.rollDice(21);
+    if ((playerFleeRoll / 2) >= fleeDifficultyRoll) {
+      this.props.updateLog("playerFleeSuccess", playerFleeRoll);
+      this.props.toggleBattleResolution()
+    } else {
+      this.props.updateLog("playerFleeFailure", playerFleeRoll);
+    }
     this.props.toggleTurn()
   }
 

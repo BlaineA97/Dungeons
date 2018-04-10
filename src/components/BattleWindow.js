@@ -28,20 +28,21 @@ class BattleWindow extends Component {
     this.updateLog = this.updateLog.bind(this);
     this.toggleTurn = this.toggleTurn.bind(this);
     this.newGame = this.newGame.bind(this);
+    this.toggleBattleResolution = this.toggleBattleResolution.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) { // Checks if Player or Enemy is dead
     if (this.state.battleResolutionIsHidden == true) {
-      if (this.state.playerHp <= 0) { // Player is Dead
-        this.setState({
-          battleResolutionIsHidden: !this.state.battleResolutionIsHidden
-        })
-      } else if (this.state.enemyHp <= 0) { // Enemy is Dead
-        this.setState({
-          battleResolutionIsHidden: !this.state.battleResolutionIsHidden
-        })
+      if (this.state.playerHp <= 0 || this.state.enemyHp <= 0) {
+        this.toggleBattleResolution()
       }
     }
+  }
+
+  toggleBattleResolution() {
+    this.setState({
+      battleResolutionIsHidden: !this.state.battleResolutionIsHidden
+    })
   }
 
   toggleTurn() {
@@ -79,8 +80,12 @@ class BattleWindow extends Component {
       newLog.push("Player attacked for "+roll)
     } else if (logType === "enemyAttack") {
       newLog.push("Enemy attacked for "+roll)
-    } else if (logType === "playerFlee") {
-      newLog.push("Player Flee for "+roll)
+    } else if (logType === "playerFleeSuccess") {
+      newLog.push("Player Flee succeeds with: "+roll)
+    } else if (logType === "enemyFlee") {
+      newLog.push("Enemy Flee for "+roll)
+    } else if (logType === "playerFleeFailure") {
+      newLog.push("Player Flee fails with: "+roll)
     } else if (logType === "enemyFlee") {
       newLog.push("Enemy Flee for "+roll)
     }
@@ -109,6 +114,7 @@ class BattleWindow extends Component {
           <Player
             battleResolutionIsHidden={this.state.battleResolutionIsHidden}
             toggleTurn={this.toggleTurn}
+            toggleBattleResolution={this.toggleBattleResolution}
             updateEnemyHp={this.updateEnemyHp}
             enemyHp={this.state.enemyHp}
             playerArmorDef={this.state.playerArmorDef}
