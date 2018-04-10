@@ -13,10 +13,23 @@ class Player extends Component {
   }
 
   handleAttackClick() {
-    let playerAttackRoll = this.props.rollDice(21)
-    let newEnemyHp = this.props.enemyHp - playerAttackRoll;
+    let attackRoll = this.props.rollDice(21);
+    let block = this.props.enemyArmorDef;
+    let newEnemyHp;
+    if (this.props.enemyDefending === true) {
+      let newAttackRoll = attackRoll - block;
+      // Check to make sure the block does not add health to the enemy.
+      if (newAttackRoll < 0) {
+        newAttackRoll = 0;
+      }
+      newEnemyHp = this.props.enemyHp - newAttackRoll;
+      this.props.updateLog("playerAttackWithBlock", attackRoll);
+      this.props.toggleEnemyDefendingFalse();
+    } else {
+      newEnemyHp = this.props.enemyHp - attackRoll;
+      this.props.updateLog("playerAttack", attackRoll);
+    }
     this.props.updateEnemyHp(newEnemyHp);
-    this.props.updateLog("playerAttack", playerAttackRoll);
     this.props.toggleTurn();
   }
 

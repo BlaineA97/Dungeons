@@ -11,13 +11,13 @@ class BattleWindow extends Component {
     this.state = {
       turnNumber: 1,
       playerHp: 1000,
-      playerWeaponDmg: 12,
-      playerArmorDef: 8,
+      playerWeaponDmg: 10,
+      playerArmorDef: 5,
       playerDefending: false,
       playerHit: 0,
       enemyHp: 1000,
-      enemyWeaponDmg: 16,
-      enemyArmorDef: 4,
+      enemyWeaponDmg: 10,
+      enemyArmorDef: 5,
       enemyDefending: false,
       enemyHit: 0,
       completeLog: [],
@@ -34,6 +34,8 @@ class BattleWindow extends Component {
     this.toggleBattleResolution = this.toggleBattleResolution.bind(this);
     this.togglePlayerDefendingTrue = this.togglePlayerDefendingTrue.bind(this);
     this.togglePlayerDefendingFalse = this.togglePlayerDefendingFalse.bind(this);
+    this.toggleEnemyDefendingTrue = this.toggleEnemyDefendingTrue.bind(this);
+    this.toggleEnemyDefendingFalse = this.toggleEnemyDefendingFalse.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) { // Checks if Player or Enemy is dead
@@ -68,10 +70,19 @@ class BattleWindow extends Component {
       playerDefending: true
     })
   }
-
   togglePlayerDefendingFalse() {
     this.setState({
       playerDefending: false
+    })
+  }
+  toggleEnemyDefendingTrue() {
+    this.setState({
+      enemyDefending: true
+    })
+  }
+  toggleEnemyDefendingFalse() {
+    this.setState({
+      enemyDefending: false
     })
   }
 
@@ -92,17 +103,20 @@ class BattleWindow extends Component {
 
   updateLog(logType, roll) {
     let newLog = this.state.completeLog;
-    let block = this.state.playerArmorDef;
+    let playerBlock = this.state.playerArmorDef;
+    let enemyBlock = this.state.enemyArmorDef;
     if (logType === "playerDefense") {
       newLog.push("Player defended for "+roll)
     } else if (logType === "enemyDefense") {
       newLog.push("Enemy defended for "+roll)
     } else if (logType === "playerAttack") {
       newLog.push("Player attacked for "+roll)
+    } else if (logType === "playerAttackWithBlock") {
+      newLog.push("Player attacked for "+roll+" ("+enemyBlock+" blocked)");
     } else if (logType === "enemyAttack") {
       newLog.push("Enemy attacked for "+roll)
     } else if (logType === "enemyAttackWithBlock") {
-      newLog.push("Enemy attacked for "+roll+" ("+block+" blocked)");
+      newLog.push("Enemy attacked for "+roll+" ("+playerBlock+" blocked)");
     } else if (logType === "playerFleeSuccess") {
       newLog.push("Player Flee succeeds with: "+roll)
     } else if (logType === "enemyFlee") {
@@ -138,7 +152,11 @@ class BattleWindow extends Component {
         <div id="LeftWindow">
           <p>{this.state.playerHp}</p>
           <Player
+            toggleEnemyDefendingFalse={this.toggleEnemyDefendingFalse}
+            toggleEnemyDefendingTrue={this.toggleEnemyDefendingTrue}
             togglePlayerDefendingTrue={this.togglePlayerDefendingTrue}
+            enemyDefending={this.state.enemyDefending}
+            enemyArmorDef={this.state.enemyArmorDef}
             playerDefending={this.state.playerDefending}
             battleResolutionIsHidden={this.state.battleResolutionIsHidden}
             toggleTurn={this.toggleTurn}
@@ -161,6 +179,7 @@ class BattleWindow extends Component {
         <div id="RightWindow">
           <p>{this.state.enemyHp}</p>
           <Enemy
+          toggleEnemyDefendingTrue={this.toggleEnemyDefendingTrue}
           togglePlayerDefendingFalse={this.togglePlayerDefendingFalse}
           togglePlayerDefendingTrue={this.togglePlayerDefendingTrue}
           playerDefending={this.state.playerDefending}

@@ -15,6 +15,11 @@ class Enemy extends Component {
 
   randomEnemyAction() {
     let action = this.props.rollDice(101);
+    // if (action > 0) { // Testing Action
+        // this.enemyDefend()
+        // this.enemyFlee(this.props.rollDice(21))
+        // this.enemyAttack(this.props.rollDice(this.props.enemyWeaponDmg))
+    // }
     if (action === 100) {
       this.enemyFlee(this.props.rollDice(21))
     } else if (action <= 49) {
@@ -45,10 +50,9 @@ class Enemy extends Component {
     this.props.toggleTurn()
   }
 
-  enemyDefend(defenseRoll) {
-    this.props.updateLog("enemyDefense", defenseRoll);
-    // let newPlayerHp = this.rollDice(defenseRoll) - this.state.playerArmorDef
-    // newPlayerHp = this.state.playerHp
+  enemyDefend() {
+    this.props.updateLog("enemyDefense", this.props.enemyArmorDef);
+    this.props.toggleEnemyDefendingTrue()
     this.props.toggleTurn()
   }
 
