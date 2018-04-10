@@ -21,6 +21,7 @@ class BattleWindow extends Component {
       completeLog: [],
       turn: "player",
       battleResolutionIsHidden: true,
+      resolutionCondition: ''
     }
     this.updatePlayerHp = this.updatePlayerHp.bind(this);
     this.updateEnemyHp = this.updateEnemyHp.bind(this);
@@ -39,9 +40,10 @@ class BattleWindow extends Component {
     }
   }
 
-  toggleBattleResolution() {
+  toggleBattleResolution(resolutionCondition) {
     this.setState({
-      battleResolutionIsHidden: !this.state.battleResolutionIsHidden
+      battleResolutionIsHidden: !this.state.battleResolutionIsHidden,
+      resolutionCondition: resolutionCondition
     })
   }
 
@@ -108,6 +110,7 @@ class BattleWindow extends Component {
       <div id="BattleWindow">
         {!this.state.battleResolutionIsHidden && <BattleResolution
           newGame={this.newGame}
+          resolutionCondition={this.state.resolutionCondition}
         />}
         <div id="LeftWindow">
           <p>{this.state.playerHp}</p>
