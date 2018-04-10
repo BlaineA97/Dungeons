@@ -14,29 +14,32 @@ class Enemy extends Component {
   }
 
   randomEnemyAction() {
-    let action = this.props.rollDice(3);
-    if (action === 0) {
-      console.log('randomEnemyAction action Attack')
-      this.enemyAttack(this.props.rollDice(this.props.enemyWeaponDmg))
-    } else if (action === 1) {
-      console.log('randomEnemyAction action Defense')
-      this.enemyDefend(this.props.rollDice(this.props.enemyArmorDef))
-    } else if (action === 2) {
-      console.log('randomEnemyAction action Flee')
+    let action = this.props.rollDice(101);
+    if (action === 100) {
       this.enemyFlee(this.props.rollDice(21))
+    } else if (action <= 49) {
+      this.enemyDefend(this.props.rollDice(this.props.enemyArmorDef))
+    } else if (action <= 99) {
+      this.enemyAttack(this.props.rollDice(this.props.enemyWeaponDmg))
     }
   }
 
   enemyAttack(attackRoll) {
-    console.log('enemyAttack ' + attackRoll)
-    let newPlayerHp = this.props.playerHp - this.props.rollDice(attackRoll);
+    let block = this.props.playerArmorDef;
+    let newPlayerHp;
+    if (this.props.playerDefending === true) {
+      newPlayerHp = this.props.playerHp - (this.props.rollDice(attackRoll) - block);
+      this.props.updateLog("enemyAttackWithBlock", attackRoll);
+      this.props.togglePlayerDefendingFalse();
+    } else {
+      newPlayerHp = this.props.playerHp - this.props.rollDice(attackRoll);
+      this.props.updateLog("enemyAttack", attackRoll);
+    }
     this.props.updatePlayerHp(newPlayerHp);
-    this.props.updateLog("enemyAttack", attackRoll);
     this.props.toggleTurn()
   }
 
   enemyDefend(defenseRoll) {
-    console.log('enemyDefend ' + defenseRoll)
     this.props.updateLog("enemyDefense", defenseRoll);
     // let newPlayerHp = this.rollDice(defenseRoll) - this.state.playerArmorDef
     // newPlayerHp = this.state.playerHp
@@ -44,8 +47,14 @@ class Enemy extends Component {
   }
 
   enemyFlee(fleeRoll) {
-    console.log('enemyFlee ' + fleeRoll)
-    this.props.updateLog("enemyFlee", fleeRoll);
+    let enemyFleeRoll = this.props.rollDice(21);
+    let fleeDifficultyRoll = this.props.rollDice(21);
+    if ( (enemyFleeRoll / 2) >= fleeDifficultyRoll) {
+      this.props.updateLog("enemyFleeSuccess", enemyFleeRoll);
+      this.props.toggleBattleResolution("Enemy fled!")
+    } else {
+      this.props.updateLog("enemyFleeFailure", enemyFleeRoll);
+    }
     this.props.toggleTurn()
   }
 

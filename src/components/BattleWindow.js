@@ -10,13 +10,15 @@ class BattleWindow extends Component {
     super(props);
     this.state = {
       turnNumber: 1,
-      playerHp: 1,
+      playerHp: 1000,
       playerWeaponDmg: 12,
       playerArmorDef: 8,
+      playerDefending: false,
       playerHit: 0,
-      enemyHp: 1,
+      enemyHp: 1000,
       enemyWeaponDmg: 6,
       enemyArmorDef: 4,
+      enemyDefending: false,
       enemyHit: 0,
       completeLog: [],
       turn: "player",
@@ -30,12 +32,16 @@ class BattleWindow extends Component {
     this.toggleTurn = this.toggleTurn.bind(this);
     this.newGame = this.newGame.bind(this);
     this.toggleBattleResolution = this.toggleBattleResolution.bind(this);
+    this.togglePlayerDefendingTrue = this.togglePlayerDefendingTrue.bind(this);
+    this.togglePlayerDefendingFalse = this.togglePlayerDefendingFalse.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) { // Checks if Player or Enemy is dead
-    if (this.state.battleResolutionIsHidden == true) {
-      if (this.state.playerHp <= 0 || this.state.enemyHp <= 0) {
-        this.toggleBattleResolution()
+    if (this.state.battleResolutionIsHidden === true) {
+      if (this.state.playerHp <= 0) {
+        this.toggleBattleResolution("Enemy defeated Player!")
+      } else if (this.state.enemyHp <= 0) {
+        this.toggleBattleResolution("Player defeated Enemy!")
       }
     }
   }
@@ -57,6 +63,18 @@ class BattleWindow extends Component {
     }
   }
 
+  togglePlayerDefendingTrue() {
+    this.setState({
+      playerDefending: true
+    })
+  }
+
+  togglePlayerDefendingFalse() {
+    this.setState({
+      playerDefending: false
+    })
+  }
+
   updatePlayerHp(roll) {
     console.log("updatePlayerHp")
     this.setState({ playerHp: roll });
@@ -73,7 +91,8 @@ class BattleWindow extends Component {
   }
 
   updateLog(logType, roll) {
-    let newLog = this.state.completeLog
+    let newLog = this.state.completeLog;
+    let block = this.state.playerArmorDef;
     if (logType === "playerDefense") {
       newLog.push("Player defended for "+roll)
     } else if (logType === "enemyDefense") {
@@ -82,6 +101,8 @@ class BattleWindow extends Component {
       newLog.push("Player attacked for "+roll)
     } else if (logType === "enemyAttack") {
       newLog.push("Enemy attacked for "+roll)
+    } else if (logType === "enemyAttackWithBlock") {
+      newLog.push("Enemy attacked for "+roll+" ("+block+" blocked)");
     } else if (logType === "playerFleeSuccess") {
       newLog.push("Player Flee succeeds with: "+roll)
     } else if (logType === "enemyFlee") {
@@ -108,13 +129,17 @@ class BattleWindow extends Component {
   render() {
     return (
       <div id="BattleWindow">
-        {!this.state.battleResolutionIsHidden && <BattleResolution
+        {!this.state.battleResolutionIsHidden &&
+          <BattleResolution
           newGame={this.newGame}
           resolutionCondition={this.state.resolutionCondition}
         />}
+
         <div id="LeftWindow">
           <p>{this.state.playerHp}</p>
           <Player
+            togglePlayerDefendingTrue={this.togglePlayerDefendingTrue}
+            playerDefending={this.state.playerDefending}
             battleResolutionIsHidden={this.state.battleResolutionIsHidden}
             toggleTurn={this.toggleTurn}
             toggleBattleResolution={this.toggleBattleResolution}
@@ -125,15 +150,22 @@ class BattleWindow extends Component {
             randomEnemyAction={this.randomEnemyAction}
             updateLog={this.updateLog}/>
         </div>
+
         <div id="CenterWindow">
           <Log
             turnNumber={this.state.turnNumber}
             completeLog={this.state.completeLog}
           />
         </div>
+
         <div id="RightWindow">
           <p>{this.state.enemyHp}</p>
           <Enemy
+          togglePlayerDefendingFalse={this.togglePlayerDefendingFalse}
+          togglePlayerDefendingTrue={this.togglePlayerDefendingTrue}
+          playerDefending={this.state.playerDefending}
+          playerArmorDef={this.state.playerArmorDef}
+          toggleBattleResolution={this.toggleBattleResolution}
           toggleTurn={this.toggleTurn}
           turn={this.state.turn}
           playerHp={this.state.playerHp}
@@ -144,6 +176,7 @@ class BattleWindow extends Component {
           enemyWeaponDmg={this.state.enemyWeaponDmg}
           enemyArmorDef={this.state.enemyArmorDef} />
         </div>
+
       </div>
     );
   }

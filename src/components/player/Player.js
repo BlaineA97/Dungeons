@@ -17,13 +17,13 @@ class Player extends Component {
     let newEnemyHp = this.props.enemyHp - playerAttackRoll;
     this.props.updateEnemyHp(newEnemyHp);
     this.props.updateLog("playerAttack", playerAttackRoll);
-    this.props.toggleTurn()
+    this.props.toggleTurn();
   }
 
   handleDefendClick() {
-    let playerDefenseRoll = this.props.rollDice(this.props.playerArmorDef);
-    this.props.updateLog("playerDefense", playerDefenseRoll);
-    this.props.toggleTurn()
+    this.props.updateLog("playerDefense", this.props.playerArmorDef);
+    this.props.togglePlayerDefendingTrue();
+    this.props.toggleTurn();
   }
 
   handleFleeClick() {
