@@ -143,11 +143,13 @@ class BattleWindow extends Component {
   render() {
     return (
       <div id="BattleWindow">
+        <div>
         {!this.state.battleResolutionIsHidden &&
           <BattleResolution
           newGame={this.newGame}
           resolutionCondition={this.state.resolutionCondition}
         />}
+        </div>
 
         <div id="LeftWindow">
           <p>{this.state.playerHp}</p>

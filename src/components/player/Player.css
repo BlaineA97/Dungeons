@@ -19,3 +19,50 @@
 #Controls {
   width: 100%;
 }
+.playerButton {
+	-webkit-transition-duration: 0.1s; /* Safari */
+	transition-duration: 0.1s;
+	background-color: #F4595B;
+	border-radius: 8px;
+	border-bottom: 4px solid #C24648;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	font-family: 'Oxygen', sans-serif;
+	letter-spacing: 2px;
+	cursor: pointer;
+  width: 50%;
+  margin: 5px;
+  padding: 10px;
+}
+.playerButton:hover {
+  background-color: #FF7375;
+  border: none;
+  border-radius: 8px;
+  border-bottom: 4px solid #C24648;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Oxygen', sans-serif;
+  letter-spacing: 2px;
+}
+.playerButton:active {
+  background-color: #C24648;
+  border: none;
+  border-radius: 8px;
+  border-bottom: 4px solid #C24648;
+  color: #CCC;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Oxygen', sans-serif;
+  letter-spacing: 2px;
+}

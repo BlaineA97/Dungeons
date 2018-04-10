@@ -10,6 +10,7 @@ class Player extends Component {
     this.handleAttackClick = this.handleAttackClick.bind(this);
     this.handleDefendClick = this.handleDefendClick.bind(this);
     this.handleFleeClick = this.handleFleeClick.bind(this);
+    this.handleEndClick = this.handleEndClick.bind(this);
   }
 
   handleAttackClick() {
@@ -51,12 +52,29 @@ class Player extends Component {
     this.props.toggleTurn()
   }
 
+  handleEndClick() {
+    this.props.toggleBattleResolution("Player Ended Battle!")
+  }
+
   render() {
     const controls = this.props.battleResolutionIsHidden ? (
       <div id="Controls">
-        <button onClick={this.handleAttackClick}>Attack</button>
-        <button onClick={this.handleDefendClick}>Defend</button>
-        <button onClick={this.handleFleeClick}>Flee</button>
+        <button
+          className="playerButton"
+          onClick={this.handleAttackClick}
+          > Attack </button>
+        <button
+          className="playerButton"
+          onClick={this.handleDefendClick}
+          > Defend </button>
+        <button
+          className="playerButton"
+          onClick={this.handleFleeClick}
+          > Flee </button>
+        <button
+          className="playerButton"
+          onClick={this.handleEndClick}
+          > End </button>
       </div>
     ) : (
       <div id="Controls">
