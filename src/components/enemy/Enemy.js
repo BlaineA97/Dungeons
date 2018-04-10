@@ -27,12 +27,18 @@ class Enemy extends Component {
   enemyAttack(attackRoll) {
     let block = this.props.playerArmorDef;
     let newPlayerHp;
+    let newAttackRoll;
     if (this.props.playerDefending === true) {
-      newPlayerHp = this.props.playerHp - (this.props.rollDice(attackRoll) - block);
+      newAttackRoll = attackRoll - block;
+      // Check to make sure the block does not add health to the player.
+      if (newAttackRoll < 0) {
+        newAttackRoll = 0;
+      }
+      newPlayerHp = this.props.playerHp - newAttackRoll;
       this.props.updateLog("enemyAttackWithBlock", attackRoll);
       this.props.togglePlayerDefendingFalse();
     } else {
-      newPlayerHp = this.props.playerHp - this.props.rollDice(attackRoll);
+      newPlayerHp = this.props.playerHp - attackRoll;
       this.props.updateLog("enemyAttack", attackRoll);
     }
     this.props.updatePlayerHp(newPlayerHp);

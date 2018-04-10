@@ -16,7 +16,7 @@ class BattleWindow extends Component {
       playerDefending: false,
       playerHit: 0,
       enemyHp: 1000,
-      enemyWeaponDmg: 6,
+      enemyWeaponDmg: 16,
       enemyArmorDef: 4,
       enemyDefending: false,
       enemyHit: 0,
