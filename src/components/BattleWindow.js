@@ -17,6 +17,7 @@ class BattleWindow extends Component {
       playerArmorDef: 5,
       playerDefending: false,
       playerHit: 0,
+      enemyName: "Villian / Enemy / Bad Guy",
       enemyHp: 100,
       enemyMaxHp: 100,
       enemyWeaponDmg: 10,
@@ -187,6 +188,7 @@ class BattleWindow extends Component {
 
         <div id="RightWindow">
           <Enemy
+          enemyName={this.state.enemyName}
           toggleEnemyDefendingTrue={this.toggleEnemyDefendingTrue}
           togglePlayerDefendingFalse={this.togglePlayerDefendingFalse}
           togglePlayerDefendingTrue={this.togglePlayerDefendingTrue}
@@ -197,6 +199,7 @@ class BattleWindow extends Component {
           turn={this.state.turn}
           playerHp={this.state.playerHp}
           enemyHp={this.state.enemyHp}
+          enemyMaxHp={this.state.enemyMaxHp}
           updatePlayerHp={this.updatePlayerHp}
           rollDice={this.rollDice}
           updateLog={this.updateLog}

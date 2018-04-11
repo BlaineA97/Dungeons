@@ -41,7 +41,6 @@
 
 /* Player Buttons */
 #Controls {
-  width: 90%;
 }
 .playerButton {
 	-webkit-transition-duration: 0.1s; /* Safari */

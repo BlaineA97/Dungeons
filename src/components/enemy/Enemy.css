@@ -6,28 +6,35 @@
 #Enemy {
   min-height: 100vh; /* Allows the footer to exist in the proper place */
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  vertical-align: middle;
-  text-align: center;
   border: red solid 1px;
 }
-#Title {
-  width: 100%;
+#EnemyName {
+  width: 90%;
+  margin: 10px;
 }
-#Stats {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  vertical-align: middle;
+
+/* Hit Point Container */
+#EnemyHitPoint {
+  width: 90%;
+  height: 20px;
+  padding: 5px;
+  background: #ddd;
+  border-radius: 5px;
+  transition: width .5s linear;
+  margin: 10px;
 }
-  #hp {
-    margin: 10px;
-  }
-  #turn {
-    margin: 10px;
-  }
-#Controls {
-  width: 100%;
+#EnemyHitPoint-bar {
+  background: #c54;
+  height: 20px;
+  position: relative;
+  transition: width .5s linear;
+}
+
+#Portrait {
+  width: 200px;
+  height: 200px;
+  border: red 1px solid;
+  border-radius: 100%;
+  display: inline-block;
+  margin: 10px;
 }

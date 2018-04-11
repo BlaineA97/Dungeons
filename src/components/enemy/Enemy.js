@@ -13,6 +13,15 @@ class Enemy extends Component {
     this.randomEnemyAction = this.randomEnemyAction.bind(this);
   }
 
+  componentDidUpdate(prevProps, prevState) { // Checks if Player or Enemy is dead
+    if (this.props.enemyHp != prevProps.enemyHp) {
+      let newHpPercentage = this.props.enemyMaxHp - (this.props.enemyMaxHp - this.props.enemyHp)
+      this.setState({
+        currentHpPercentage: newHpPercentage
+      })
+    }
+  }
+
   randomEnemyAction() {
     let action = this.props.rollDice(101);
     // if (action > 0) { // Testing Action
@@ -74,10 +83,13 @@ class Enemy extends Component {
     }
     return (
       <div id="Enemy">
-        <div id="Title">Enemy Window</div>
-        <div id="Stats">
-          <span id="hp">Hp: {this.props.enemyHp}</span>
+        <div id="EnemyName">{this.props.enemyName}</div>
+        <div id="EnemyHitPoint">
+          <div id="EnemyHitPoint-bar" style={{width: `${this.state.currentHpPercentage}%`}}>
+            {this.props.enemyHp} / {this.props.enemyMaxHp}
+          </div>
         </div>
+        <div id="Portrait">Portrait</div>
       </div>
     );
   }
