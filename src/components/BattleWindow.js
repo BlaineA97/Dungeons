@@ -60,8 +60,10 @@ class BattleWindow extends Component {
 
   toggleTurn() {
     if (this.state.turn === "player") {
-      this.setState({ turn: "enemy"});
-      console.log("Current Turn: "+ this.state.turn)
+      setTimeout(() => { // Provide a delay between user and "A.I." action.
+        this.setState({ turn: "enemy"});
+        console.log("Current Turn: "+ this.state.turn)
+      }, 1000);
     } else {
       this.setState({ turn: "player", turnNumber: this.state.turnNumber+1  });
       console.log("Current Turn: "+ this.state.turn)
