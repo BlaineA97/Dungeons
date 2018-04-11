@@ -19,27 +19,73 @@
   border-radius: 50px;
 }
 #OptionsContainer {
+  z-index: 10;
   position: relative;
   vertical-align: middle;
   text-align: center;
   margin: 50px;
-  min-width: 300px;
-  max-width: 300px;
+  min-width: 450px;
+  max-width: 450px;
   min-height: 300px;
   max-height: 300px;
   border: red solid 1px;
-  border-radius: 100%;
+  border-radius: 50px;
   background-color: lightblue;
 }
 #Outcome {
   margin-top: 50px;
+  font-size: 2.0em;
 }
 #Options {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
 }
+/* BattleResolution Buttons */
 .OptionItem {
-  margin-left: 10px;
-  margin-right: 10px;
+	-webkit-transition-duration: 0.1s; /* Safari */
+	transition-duration: 0.1s;
+	background-color: #F4595B;
+	border-radius: 8px;
+	border-bottom: 4px solid #C24648;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	font-family: 'Oxygen', sans-serif;
+	letter-spacing: 2px;
+	cursor: pointer;
+  width: 25%;
+  margin: 5px;
+  padding: 10px;
+}
+.OptionItem:hover {
+  background-color: #FF7375;
+  border: none;
+  border-radius: 8px;
+  border-bottom: 4px solid #C24648;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Oxygen', sans-serif;
+  letter-spacing: 2px;
+}
+.OptionItem:active {
+  background-color: #C24648;
+  border: none;
+  border-radius: 8px;
+  border-bottom: 4px solid #C24648;
+  color: #CCC;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Oxygen', sans-serif;
+  letter-spacing: 2px;
 }
