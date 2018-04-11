@@ -6,18 +6,42 @@
 #Player {
   min-height: 100vh; /* Allows the footer to exist in the proper place */
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  vertical-align: middle;
-  text-align: center;
   border: red solid 1px;
 }
-#Title {
-  width: 100%;
+#PlayerName {
+  width: 90%;
+  margin: 10px;
 }
+
+/* Hit Point Container */
+#PlayerHitPoint {
+  width: 90%;
+  height: 20px;
+  padding: 5px;
+  background: #ddd;
+  border-radius: 5px;
+  transition: width .5s linear;
+  margin: 10px;
+}
+#PlayerHitPoint-bar {
+  background: #c54;
+  height: 20px;
+  position: relative;
+  transition: width .5s linear;
+}
+
+#Portrait {
+  width: 200px;
+  height: 200px;
+  border: red 1px solid;
+  border-radius: 100%;
+  display: inline-block;
+  margin: 10px;
+}
+
+/* Player Buttons */
 #Controls {
-  width: 100%;
+  width: 90%;
 }
 .playerButton {
 	-webkit-transition-duration: 0.1s; /* Safari */

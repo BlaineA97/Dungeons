@@ -10,12 +10,15 @@ class BattleWindow extends Component {
     super(props);
     this.state = {
       turnNumber: 1,
-      playerHp: 1000,
+      playerName: 'WickedAmusingBus',
+      playerHp: 100,
+      playerMaxHp: 100,
       playerWeaponDmg: 10,
       playerArmorDef: 5,
       playerDefending: false,
       playerHit: 0,
-      enemyHp: 1000,
+      enemyHp: 100,
+      enemyMaxHp: 100,
       enemyWeaponDmg: 10,
       enemyArmorDef: 5,
       enemyDefending: false,
@@ -152,8 +155,8 @@ class BattleWindow extends Component {
         </div>
 
         <div id="LeftWindow">
-          <p>{this.state.playerHp}</p>
           <Player
+            playerName={this.state.playerName}
             toggleEnemyDefendingFalse={this.toggleEnemyDefendingFalse}
             toggleEnemyDefendingTrue={this.toggleEnemyDefendingTrue}
             togglePlayerDefendingTrue={this.togglePlayerDefendingTrue}
@@ -165,6 +168,8 @@ class BattleWindow extends Component {
             toggleBattleResolution={this.toggleBattleResolution}
             updateEnemyHp={this.updateEnemyHp}
             enemyHp={this.state.enemyHp}
+            playerHp={this.state.playerHp}
+            playerMaxHp={this.state.playerMaxHp}
             playerArmorDef={this.state.playerArmorDef}
             rollDice={this.rollDice}
             randomEnemyAction={this.randomEnemyAction}
@@ -179,7 +184,6 @@ class BattleWindow extends Component {
         </div>
 
         <div id="RightWindow">
-          <p>{this.state.enemyHp}</p>
           <Enemy
           toggleEnemyDefendingTrue={this.toggleEnemyDefendingTrue}
           togglePlayerDefendingFalse={this.togglePlayerDefendingFalse}

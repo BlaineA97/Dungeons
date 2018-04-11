@@ -5,12 +5,21 @@ class Player extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      blank: null
+      currentHpPercentage: 100
     };
     this.handleAttackClick = this.handleAttackClick.bind(this);
     this.handleDefendClick = this.handleDefendClick.bind(this);
     this.handleFleeClick = this.handleFleeClick.bind(this);
     this.handleEndClick = this.handleEndClick.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState) { // Checks if Player or Enemy is dead
+    if (this.props.playerHp != prevProps.playerHp) {
+      let newHpPercentage = this.props.playerMaxHp - (this.props.playerMaxHp - this.props.playerHp)
+      this.setState({
+        currentHpPercentage: newHpPercentage
+      })
+    }
   }
 
   handleAttackClick() {
@@ -81,9 +90,17 @@ class Player extends Component {
       </div>
     ) ;
 
+
+
     return (
       <div id="Player">
-        <div id="Title">Player Window</div>
+        <div id="PlayerName">{this.props.playerName}</div>
+        <div id="PlayerHitPoint">
+          <div id="PlayerHitPoint-bar" style={{width: `${this.state.currentHpPercentage}%`}}>
+            {this.props.playerHp} / {this.props.playerMaxHp}
+          </div>
+        </div>
+        <div id="Portrait">Portrait</div>
         {controls}
       </div>
     );
