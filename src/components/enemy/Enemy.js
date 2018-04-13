@@ -89,7 +89,11 @@ class Enemy extends Component {
             {this.props.enemyHp} / {this.props.enemyMaxHp}
           </div>
         </div>
-        <div id="Portrait">Portrait</div>
+        <div id="Portrait">
+          <img
+            id="enemyPortrait"
+            src={require(`../../images/${this.props.enemyPortrait}`)} alt={`${this.props.enemyName + " Image"}`} />
+        </div>
       </div>
     );
   }

@@ -5,7 +5,8 @@ class Player extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentHpPercentage: 100
+      currentHpPercentage: 100,
+      isButtonDisabled: false
     };
     this.handleAttackClick = this.handleAttackClick.bind(this);
     this.handleDefendClick = this.handleDefendClick.bind(this);
@@ -23,6 +24,9 @@ class Player extends Component {
   }
 
   handleAttackClick() {
+    this.setState({
+      isButtonDisabled: true
+    });
     let attackRoll = this.props.rollDice(21);
     let block = this.props.enemyArmorDef;
     let newEnemyHp;
@@ -41,15 +45,23 @@ class Player extends Component {
     }
     this.props.updateEnemyHp(newEnemyHp);
     this.props.toggleTurn();
+    setTimeout(() => this.setState({ isButtonDisabled: false }), 1500);
   }
 
   handleDefendClick() {
+    this.setState({
+      isButtonDisabled: true
+    });
     this.props.updateLog("playerDefense", this.props.playerArmorDef);
     this.props.togglePlayerDefendingTrue();
     this.props.toggleTurn();
+    setTimeout(() => this.setState({ isButtonDisabled: false }), 1500);
   }
 
   handleFleeClick() {
+    this.setState({
+      isButtonDisabled: true
+    });
     let playerFleeRoll = this.props.rollDice(21);
     let fleeDifficultyRoll = this.props.rollDice(21);
     if ( (playerFleeRoll / 2) >= fleeDifficultyRoll) {
@@ -59,38 +71,60 @@ class Player extends Component {
       this.props.updateLog("playerFleeFailure", playerFleeRoll);
     }
     this.props.toggleTurn()
+    setTimeout(() => this.setState({ isButtonDisabled: false }), 1500);
   }
 
   handleEndClick() {
+    this.setState({
+      isButtonDisabled: true
+    });
     this.props.toggleBattleResolution("Player Ended Battle!")
+    setTimeout(() => this.setState({ isButtonDisabled: false }), 1500);
   }
 
   render() {
-    const controls = this.props.battleResolutionIsHidden ? (
+    const playerControlsActive = (
       <div id="Controls">
         <button
           className="playerButton"
           onClick={this.handleAttackClick}
+          disabled={this.state.isButtonDisabled}
           > Attack </button>
         <button
           className="playerButton"
           onClick={this.handleDefendClick}
+          disabled={this.state.isButtonDisabled}
           > Defend </button>
         <button
           className="playerButton"
           onClick={this.handleFleeClick}
+          disabled={this.state.isButtonDisabled}
           > Flee </button>
         <button
           className="playerButton"
           onClick={this.handleEndClick}
+          disabled={this.state.isButtonDisabled}
           > End </button>
       </div>
-    ) : (
+    )
+    const playerControlsInactive = (
       <div id="Controls">
+        <button
+          className="playerButton"
+          > Attack </button>
+        <button
+          className="playerButton"
+          > Defend </button>
+        <button
+          className="playerButton"
+          > Flee </button>
+        <button
+          className="playerButton"
+          > End </button>
       </div>
-    ) ;
+    )
 
-
+    const controls = this.props.battleResolutionIsHidden ? (playerControlsActive) : (playerControlsInactive) ;
 
     return (
       <div id="Player">

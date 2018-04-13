@@ -17,7 +17,8 @@ class BattleWindow extends Component {
       playerArmorDef: 5,
       playerDefending: false,
       playerHit: 0,
-      enemyName: "Villian / Enemy / Bad Guy",
+      enemyName: '',
+      enemyPortrait: '',
       enemyHp: 100,
       enemyMaxHp: 100,
       enemyWeaponDmg: 10,
@@ -40,6 +41,11 @@ class BattleWindow extends Component {
     this.togglePlayerDefendingFalse = this.togglePlayerDefendingFalse.bind(this);
     this.toggleEnemyDefendingTrue = this.toggleEnemyDefendingTrue.bind(this);
     this.toggleEnemyDefendingFalse = this.toggleEnemyDefendingFalse.bind(this);
+    this.enemyGenerator = this.enemyGenerator.bind(this);
+  }
+
+  componentWillMount() {
+    this.enemyGenerator()
   }
 
   componentDidUpdate(prevProps, prevState) { // Checks if Player or Enemy is dead
@@ -62,11 +68,11 @@ class BattleWindow extends Component {
   toggleTurn() {
     if (this.state.turn === "player") {
       setTimeout(() => { // Provide a delay between user and "A.I." action.
-        this.setState({ turn: "enemy"});
+        this.setState({ turn: "enemy" });
         console.log("Current Turn: "+ this.state.turn)
       }, 1000);
     } else {
-      this.setState({ turn: "player", turnNumber: this.state.turnNumber+1  });
+      this.setState({ turn: "player", turnNumber: this.state.turnNumber+1 });
       console.log("Current Turn: "+ this.state.turn)
     }
   }
@@ -135,6 +141,38 @@ class BattleWindow extends Component {
     this.setState({ completeLog: newLog })
   }
 
+  enemyGenerator() {
+    // const enemyNames = ["Unicorn", "Dragon", "Mermaid", "Werewolf", "Fairy", "Sphinx", "Yeti", "Chimera", "Pegasus", "Centaur", "Griffin", "Basillisk", "Ghoul", "Troll", "Imp", "Gnome", "Manticore", "Kobold", "Salamander", "Minotaur"]
+
+    const enemyUnicorn = {
+      name: "Unicorn", hp: 100, portrait: "enemyUnicorn.jpg"
+    }
+    const enemyDragon = {
+      name: "Dragon", hp: 150, portrait: "enemyDragon.jpg"
+    }
+    const enemyMermaid = {
+      name: "Mermaid", hp: 80, portrait: "enemyMermaid.jpg"
+    }
+    const enemyWerewolf = {
+      name: "Werewolf", hp: 120, portrait: "enemyWerewolf.jpg"
+    }
+    const enemyFairy = {
+      name: "Fairy", hp: 40, portrait: "enemyFairy.jpg"
+    }
+    const enemySorceress = {
+      name: "Sorceress", hp: 60, portrait: "enemySorceress.jpg"
+    }
+
+    const enemyList = [enemyUnicorn, enemyDragon, enemyMermaid, enemyWerewolf, enemyFairy, enemySorceress]
+
+    const selectedEnemy = enemyList[this.rollDice(6)]
+    this.setState({
+      enemyName: selectedEnemy.name,
+      enemyHp: selectedEnemy.hp,
+      enemyPortrait: selectedEnemy.portrait
+    })
+  }
+
   newGame() {
     this.setState({
       enemyHp: 100,
@@ -142,8 +180,9 @@ class BattleWindow extends Component {
       turnNumber: 1,
       turn: "player",
       battleResolutionIsHidden: true,
-      completeLog: []
+      completeLog: [],
     })
+    this.enemyGenerator();
   }
 
   render() {
@@ -159,6 +198,7 @@ class BattleWindow extends Component {
 
         <div id="LeftWindow">
           <Player
+            turn={this.state.turn}
             playerName={this.state.playerName}
             toggleEnemyDefendingFalse={this.toggleEnemyDefendingFalse}
             toggleEnemyDefendingTrue={this.toggleEnemyDefendingTrue}
@@ -189,6 +229,7 @@ class BattleWindow extends Component {
         <div id="RightWindow">
           <Enemy
           enemyName={this.state.enemyName}
+          enemyPortrait={this.state.enemyPortrait}
           toggleEnemyDefendingTrue={this.toggleEnemyDefendingTrue}
           togglePlayerDefendingFalse={this.togglePlayerDefendingFalse}
           togglePlayerDefendingTrue={this.togglePlayerDefendingTrue}
