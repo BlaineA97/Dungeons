@@ -15,7 +15,7 @@ class Enemy extends Component {
 
   componentDidUpdate(prevProps, prevState) { // Checks if Player or Enemy is dead
     if (this.props.enemyHp != prevProps.enemyHp) {
-      let newHpPercentage = this.props.enemyMaxHp - (this.props.enemyMaxHp - this.props.enemyHp)
+      let newHpPercentage = (this.props.enemyHp / this.props.enemyMaxHp) * 100
       this.setState({
         currentHpPercentage: newHpPercentage
       })
