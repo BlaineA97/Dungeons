@@ -7,13 +7,21 @@ class Player extends Component {
     this.state = {
       currentHpPercentage: 100,
       isButtonDisabled: false,
-      playerPortrait: "playerRogueFemale",
-      playerName: 'Blaine'
+      playerName: 'Blaine',
+      playerPortraitList: [],
+      portraitKey: 1
     };
     this.handleAttackClick = this.handleAttackClick.bind(this);
     this.handleDefendClick = this.handleDefendClick.bind(this);
     this.handleFleeClick = this.handleFleeClick.bind(this);
     this.handleEndClick = this.handleEndClick.bind(this);
+    this.setupPlayerPortrait = this.setupPlayerPortrait.bind(this);
+    this.handleNextPortraitClick = this.handleNextPortraitClick.bind(this);
+    this.handlePreviousPortraitClick = this.handlePreviousPortraitClick.bind(this);
+  }
+
+  componentWillMount() {
+    this.setupPlayerPortrait()
   }
 
   componentDidUpdate(prevProps, prevState) { // Checks if Player or Enemy is dead
@@ -84,11 +92,52 @@ class Player extends Component {
     setTimeout(() => this.setState({ isButtonDisabled: false }), 1500);
   }
 
+  setupPlayerPortrait() {
+    // Player Portrait Setup:
+    const playerMageMale = {key: 1, name: 'playerMageMale'}
+    const playerMageFemale = {key: 2, name: 'playerMageFemale'}
+    const playerWarriorMale = {key: 3, name: 'playerWarriorMale'}
+    const playerWarriorFemale = {key: 4, name: 'playerWarriorFemale'}
+    const playerRogueMale = {key: 5, name: 'playerRogueMale'}
+    const playerRogueFemale = {key: 6, name: 'playerRogueFemale'}
+    const playerPortraitArray = [playerMageMale, playerMageFemale, playerWarriorMale, playerWarriorFemale, playerRogueMale, playerRogueFemale]
+    let randomStarterPortrait = this.props.rollDice(playerPortraitArray.length)
+    this.setState({
+      playerPortraitList: playerPortraitArray,
+      portraitKey: randomStarterPortrait
+    })
+
+  }
   handleNextPortraitClick() {
-      console.log('next')
+    const allPortraits = this.state.playerPortraitList;
+    const currentPortraitKey = this.state.portraitKey;
+    for (let i = 0; i < this.state.playerPortraitList.length; i++) {
+      if (allPortraits[i] === allPortraits[this.state.portraitKey]) {
+        console.log('Current Key: '+this.state.portraitKey+' | MATCH: '+i)
+        if ((i + 1) >= this.state.playerPortraitList.length) {
+          this.setState({ portraitKey: 0 })
+        } else {
+          let nextPortrait = i + 1
+          this.setState({ portraitKey: nextPortrait })
+        }
+      }
+    }
   }
   handlePreviousPortraitClick() {
-      console.log('previous')
+    const allPortraits = this.state.playerPortraitList;
+    const currentPortraitKey = this.state.portraitKey;
+    for (let i = 0; i < this.state.playerPortraitList.length; i++) {
+      if (allPortraits[i] === allPortraits[this.state.portraitKey]) {
+        console.log('Current Key: '+this.state.portraitKey+' | MATCH: '+i)
+        if ((i - 1) < 0) {
+          let previousPortrait = allPortraits.length - 1;
+          this.setState({ portraitKey: previousPortrait })
+        } else {
+          let previousPortrait = i - 1
+          this.setState({ portraitKey: previousPortrait })
+        }
+      }
+    }
   }
 
   render() {
@@ -123,7 +172,7 @@ class Player extends Component {
           <button id="leftButton" className="playerPortraitButton" onClick={this.handlePreviousPortraitClick} > {"<"} </button>
           <img
             id="playerPortrait"
-            src={require(`../../images/${this.state.playerPortrait}.jpg`)} alt={`${this.props.playerName + " Image"}`}
+            src={require(`../../images/${this.state.playerPortraitList[this.state.portraitKey].name}.jpg`)} alt={`${this.props.playerName + " Image"}`}
           />
           <button id="rightButton" className="playerPortraitButton" onClick={this.handleNextPortraitClick}> {">"} </button>
         </div>
