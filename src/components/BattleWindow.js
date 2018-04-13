@@ -10,7 +10,6 @@ class BattleWindow extends Component {
     super(props);
     this.state = {
       turnNumber: 1,
-      playerName: 'WickedAmusingBus',
       playerHp: 100,
       playerMaxHp: 100,
       playerWeaponDmg: 10,
@@ -42,6 +41,15 @@ class BattleWindow extends Component {
     this.toggleEnemyDefendingTrue = this.toggleEnemyDefendingTrue.bind(this);
     this.toggleEnemyDefendingFalse = this.toggleEnemyDefendingFalse.bind(this);
     this.enemyGenerator = this.enemyGenerator.bind(this);
+  }
+
+  credits() {
+    // playerWarriorFemale: https://www.pinterest.com/pin/54887689187268320/
+    // playerRogueFemale: https://www.pinterest.com/pin/351351208413066802/
+    // playerMageFemale: https://www.pinterest.com/pin/263460646929668145/
+    // playerWarriorMale: https://www.pinterest.com/pin/416723771762590642/
+    // playerRogueMale: https://www.pinterest.com/pin/AZhUtSL3iaZzV05uQ8ReOh99aiJ88oHkrwsmH9FgW_nKWooG9DHvq-4/
+    // playerMageMale: https://www.pinterest.com/pin/144678206763562323/
   }
 
   componentWillMount() {
@@ -200,7 +208,6 @@ class BattleWindow extends Component {
         <div id="LeftWindow">
           <Player
             turn={this.state.turn}
-            playerName={this.state.playerName}
             toggleEnemyDefendingFalse={this.toggleEnemyDefendingFalse}
             toggleEnemyDefendingTrue={this.toggleEnemyDefendingTrue}
             togglePlayerDefendingTrue={this.togglePlayerDefendingTrue}

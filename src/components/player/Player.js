@@ -6,7 +6,9 @@ class Player extends Component {
     super(props);
     this.state = {
       currentHpPercentage: 100,
-      isButtonDisabled: false
+      isButtonDisabled: false,
+      playerPortrait: "playerRogueFemale",
+      playerName: 'Blaine'
     };
     this.handleAttackClick = this.handleAttackClick.bind(this);
     this.handleDefendClick = this.handleDefendClick.bind(this);
@@ -82,45 +84,28 @@ class Player extends Component {
     setTimeout(() => this.setState({ isButtonDisabled: false }), 1500);
   }
 
+  handleNextPortraitClick() {
+      console.log('next')
+  }
+  handlePreviousPortraitClick() {
+      console.log('previous')
+  }
+
   render() {
     const playerControlsActive = (
       <div id="Controls">
-        <button
-          className="playerButton"
-          onClick={this.handleAttackClick}
-          disabled={this.state.isButtonDisabled}
-          > Attack </button>
-        <button
-          className="playerButton"
-          onClick={this.handleDefendClick}
-          disabled={this.state.isButtonDisabled}
-          > Defend </button>
-        <button
-          className="playerButton"
-          onClick={this.handleFleeClick}
-          disabled={this.state.isButtonDisabled}
-          > Flee </button>
-        <button
-          className="playerButton"
-          onClick={this.handleEndClick}
-          disabled={this.state.isButtonDisabled}
-          > End </button>
+        <button className="playerButton" onClick={this.handleAttackClick} disabled={this.state.isButtonDisabled} > Attack </button>
+        <button className="playerButton" onClick={this.handleDefendClick} disabled={this.state.isButtonDisabled} > Defend </button>
+        <button className="playerButton" onClick={this.handleFleeClick} disabled={this.state.isButtonDisabled} > Flee </button>
+        <button className="playerButton" onClick={this.handleEndClick} disabled={this.state.isButtonDisabled} > End </button>
       </div>
     )
     const playerControlsInactive = (
       <div id="Controls">
-        <button
-          className="playerButton"
-          > Attack </button>
-        <button
-          className="playerButton"
-          > Defend </button>
-        <button
-          className="playerButton"
-          > Flee </button>
-        <button
-          className="playerButton"
-          > End </button>
+        <button className="playerButton" > Attack </button>
+        <button className="playerButton" > Defend </button>
+        <button className="playerButton" > Flee </button>
+        <button className="playerButton" > End </button>
       </div>
     )
 
@@ -128,13 +113,20 @@ class Player extends Component {
 
     return (
       <div id="Player">
-        <div id="PlayerName">{this.props.playerName}</div>
+        <div id="PlayerName">{this.state.playerName}</div>
         <div id="PlayerHitPoint">
           <div id="PlayerHitPoint-bar" style={{width: `${this.state.currentHpPercentage}%`}}>
             {this.props.playerHp} / {this.props.playerMaxHp}
           </div>
         </div>
-        <div id="Portrait">Portrait</div>
+        <div id="Portrait">
+          <button id="leftButton" className="playerPortraitButton" onClick={this.handlePreviousPortraitClick} > {"<"} </button>
+          <img
+            id="playerPortrait"
+            src={require(`../../images/${this.state.playerPortrait}.jpg`)} alt={`${this.props.playerName + " Image"}`}
+          />
+          <button id="rightButton" className="playerPortraitButton" onClick={this.handleNextPortraitClick}> {">"} </button>
+        </div>
         {controls}
       </div>
     );
