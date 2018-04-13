@@ -169,6 +169,7 @@ class BattleWindow extends Component {
     this.setState({
       enemyName: selectedEnemy.name,
       enemyHp: selectedEnemy.hp,
+      enemyMaxHp: selectedEnemy.hp,
       enemyPortrait: selectedEnemy.portrait
     })
   }
