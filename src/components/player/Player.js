@@ -132,7 +132,6 @@ class Player extends Component {
     const currentPortraitKey = this.state.portraitKey;
     for (let i = 0; i < this.state.playerPortraitList.length; i++) {
       if (allPortraits[i] === allPortraits[this.state.portraitKey]) {
-        console.log('Current Key: '+this.state.portraitKey+' | MATCH: '+i)
         if ((i - 1) < 0) {
           let previousPortrait = allPortraits.length - 1;
           this.setState({ portraitKey: previousPortrait })
@@ -151,7 +150,6 @@ class Player extends Component {
   }
 
   handlePlayerNameFullSizeClick() {
-    console.log('thingy!')
     this.setState({
       playerEditingName: true,
     })

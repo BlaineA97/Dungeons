@@ -10,6 +10,7 @@ class BattleWindow extends Component {
     super(props);
     this.state = {
       turnNumber: 1,
+      playerName: 'WickedAmusingBus',
       playerHp: 100,
       playerMaxHp: 100,
       playerWeaponDmg: 10,
@@ -77,11 +78,9 @@ class BattleWindow extends Component {
     if (this.state.turn === "player") {
       setTimeout(() => { // Provide a delay between user and "A.I." action.
         this.setState({ turn: "enemy" });
-        console.log("Current Turn: "+ this.state.turn)
       }, 1000);
     } else {
       this.setState({ turn: "player", turnNumber: this.state.turnNumber+1 });
-      console.log("Current Turn: "+ this.state.turn)
     }
   }
 
@@ -107,12 +106,10 @@ class BattleWindow extends Component {
   }
 
   updatePlayerHp(roll) {
-    console.log("updatePlayerHp")
     this.setState({ playerHp: roll });
   }
 
   updateEnemyHp(roll) {
-    console.log("updateEnemyHp")
     this.setState({ enemyHp: roll });
   }
 
@@ -150,29 +147,13 @@ class BattleWindow extends Component {
   }
 
   enemyGenerator() {
-    // const enemyNames = ["Unicorn", "Dragon", "Mermaid", "Werewolf", "Fairy", "Sphinx", "Yeti", "Chimera", "Pegasus", "Centaur", "Griffin", "Basillisk", "Ghoul", "Troll", "Imp", "Gnome", "Manticore", "Kobold", "Salamander", "Minotaur"]
-
-    const enemyUnicorn = {
-      name: "Unicorn", hp: 100, portrait: "enemyUnicorn.jpg"
-    }
-    const enemyDragon = {
-      name: "Dragon", hp: 150, portrait: "enemyDragon.jpg"
-    }
-    const enemyMermaid = {
-      name: "Mermaid", hp: 80, portrait: "enemyMermaid.jpg"
-    }
-    const enemyWerewolf = {
-      name: "Werewolf", hp: 120, portrait: "enemyWerewolf.jpg"
-    }
-    const enemyFairy = {
-      name: "Fairy", hp: 40, portrait: "enemyFairy.jpg"
-    }
-    const enemySorceress = {
-      name: "Sorceress", hp: 60, portrait: "enemySorceress.jpg"
-    }
-
+    const enemyUnicorn = { name: "Unicorn", hp: 100, portrait: "enemyUnicorn.jpg" }
+    const enemyDragon = { name: "Dragon", hp: 150, portrait: "enemyDragon.jpg" }
+    const enemyMermaid = { name: "Mermaid", hp: 80, portrait: "enemyMermaid.jpg" }
+    const enemyWerewolf = { name: "Werewolf", hp: 120, portrait: "enemyWerewolf.jpg" }
+    const enemyFairy = { name: "Fairy", hp: 40, portrait: "enemyFairy.jpg" }
+    const enemySorceress = { name: "Sorceress", hp: 60, portrait: "enemySorceress.jpg" }
     const enemyList = [enemyUnicorn, enemyDragon, enemyMermaid, enemyWerewolf, enemyFairy, enemySorceress]
-
     const selectedEnemy = enemyList[this.rollDice(6)]
     this.setState({
       enemyName: selectedEnemy.name,
