@@ -9,8 +9,25 @@
   border: red solid 1px;
 }
 #PlayerName {
-  width: 90%;
-  margin: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+#PlayerNameInput, {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#PlayerNameFullSize  {
+  font-size: 1.5em;
+}
+#PlayerNameFullSize:hover {
+  color: lightblue;
+  cursor: pointer;
+}
+#PlayerNameSubmit {
+  cursor: pointer;
+}
+#PlayerNameInput:focus {
+  border: blue 1px solid;
 }
 
 /* Hit Point Container */
@@ -39,7 +56,7 @@
   min-height: 300px;
   max-width: 200px;
   max-height: 300px;
-  border-radius: 100%;
+  border-radius: 75px;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -64,7 +81,6 @@
 	border-radius: 8px;
 	border-bottom: 4px solid #C24648;
 	color: white;
-	padding: 15px 32px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
@@ -78,29 +94,15 @@
 }
 .playerButton:hover {
   background-color: #FF7375;
-  border: none;
-  border-radius: 8px;
-  border-bottom: 4px solid #C24648;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 16px;
   font-family: 'Oxygen', sans-serif;
-  letter-spacing: 2px;
 }
 .playerButton:active {
   background-color: #C24648;
-  border: none;
-  border-radius: 8px;
-  border-bottom: 4px solid #C24648;
   color: #CCC;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 16px;
   font-family: 'Oxygen', sans-serif;
-  letter-spacing: 2px;
+  outline: none;
 }

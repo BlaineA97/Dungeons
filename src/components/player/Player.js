@@ -7,9 +7,10 @@ class Player extends Component {
     this.state = {
       currentHpPercentage: 100,
       isButtonDisabled: false,
-      playerName: 'Blaine',
+      playerName: 'Character Name',
       playerPortraitList: [],
-      portraitKey: 1
+      portraitKey: 1,
+      playerEditingName: false
     };
     this.handleAttackClick = this.handleAttackClick.bind(this);
     this.handleDefendClick = this.handleDefendClick.bind(this);
@@ -18,6 +19,9 @@ class Player extends Component {
     this.setupPlayerPortrait = this.setupPlayerPortrait.bind(this);
     this.handleNextPortraitClick = this.handleNextPortraitClick.bind(this);
     this.handlePreviousPortraitClick = this.handlePreviousPortraitClick.bind(this);
+    this.handlePlayerNameInputChange = this.handlePlayerNameInputChange.bind(this);
+    this.handlePlayerNameFullSizeClick = this.handlePlayerNameFullSizeClick.bind(this);
+    this.handlePlayerNameSaveChanges = this.handlePlayerNameSaveChanges.bind(this);
   }
 
   componentWillMount() {
@@ -140,6 +144,25 @@ class Player extends Component {
     }
   }
 
+  handlePlayerNameInputChange(e) {
+    this.setState({
+      playerName: e.target.value
+    })
+  }
+
+  handlePlayerNameFullSizeClick() {
+    console.log('thingy!')
+    this.setState({
+      playerEditingName: true,
+    })
+  }
+
+  handlePlayerNameSaveChanges() {
+    this.setState({
+      playerEditingName: false
+    })
+  }
+
   render() {
     const playerControlsActive = (
       <div id="Controls">
@@ -157,12 +180,26 @@ class Player extends Component {
         <button className="playerButton" > End </button>
       </div>
     )
-
     const controls = this.props.battleResolutionIsHidden ? (playerControlsActive) : (playerControlsInactive) ;
+
+    const playerNameChangeActive = (
+      <div id="PlayerName">
+        <input id ="PlayerNameInput" value={this.state.playerName} type='text' onChange={this.handlePlayerNameInputChange} />
+        <button id="PlayerNameSubmit" value='Submit' onClick={this.handlePlayerNameSaveChanges}>Submit</button>
+      </div>
+    )
+    const playerNameChangeInactive = (
+      <div id="PlayerName">
+        <h3 id ="PlayerNameFullSize" onClick={this.handlePlayerNameFullSizeClick}>
+          {this.state.playerName}
+        </h3>
+      </div>
+    )
+    const characterName = this.state.playerEditingName ? (playerNameChangeActive) : (playerNameChangeInactive) ;
 
     return (
       <div id="Player">
-        <div id="PlayerName">{this.state.playerName}</div>
+          {characterName}
         <div id="PlayerHitPoint">
           <div id="PlayerHitPoint-bar" style={{width: `${this.state.currentHpPercentage}%`}}>
             {this.props.playerHp} / {this.props.playerMaxHp}
