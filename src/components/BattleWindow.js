@@ -10,7 +10,6 @@ class BattleWindow extends Component {
     super(props);
     this.state = {
       turnNumber: 1,
-      playerName: 'WickedAmusingBus',
       playerHp: 100,
       playerMaxHp: 100,
       playerWeaponDmg: 10,

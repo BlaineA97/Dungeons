@@ -31,7 +31,7 @@ class Enemy extends Component {
     // }
     if (action === 100) {
       this.enemyFlee(this.props.rollDice(21))
-    } else if (action <= 49) {
+    } else if (action <= 39) {
       this.enemyDefend(this.props.rollDice(this.props.enemyArmorDef))
     } else if (action <= 99) {
       this.enemyAttack(this.props.rollDice(this.props.enemyWeaponDmg))

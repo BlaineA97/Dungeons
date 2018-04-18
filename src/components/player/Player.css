@@ -25,6 +25,8 @@
 }
 #PlayerNameSubmit {
   cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 #PlayerNameInput:focus {
   border: blue 1px solid;
@@ -38,6 +40,7 @@
   background: #ddd;
   border-radius: 5px;
   transition: width .5s linear;
+  position: relative;
   margin: 10px;
 }
 #PlayerHitPoint-bar {
@@ -46,8 +49,18 @@
   position: relative;
   transition: width .5s linear;
 }
+#PlayerHitPoint-numbers {
+  position: relative;
+  margin-top: 10px;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 #Portrait {
+  padding-top: 20px;
   border-radius: 100%;
   display: flex;
 }
