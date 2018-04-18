@@ -21,6 +21,7 @@
   background: #ddd;
   border-radius: 5px;
   transition: width .5s linear;
+  position: relative;
   margin: 10px;
 }
 #EnemyHitPoint-bar {
@@ -28,6 +29,15 @@
   height: 20px;
   position: relative;
   transition: width .5s linear;
+}
+#EnemyHitPoint-numbers {
+  position: relative;
+  margin-top: 10px;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #enemyPortrait {

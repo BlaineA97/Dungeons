@@ -3,8 +3,17 @@
   padding: 0;
 }
 
+/* Color Palette provided to all other .css */
+:root {
+  --1: #5B5B5B;
+  --2: #7D7C7A;
+  --3: #C9C19F;
+  --4: #F9F8F8;
+  --5: #C0D6DF;
+}
+
 #BattleWindow {
-  margin-top: 15px;
+  margin-top: 25px;
   min-height: 100vh; /* Allows the footer to exist in the proper place */
   width: 100%;
   display: flex;

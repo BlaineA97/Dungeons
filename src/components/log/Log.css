@@ -10,10 +10,37 @@
   vertical-align: middle;
   text-align: center;
   border: red solid 1px;
+  background-image: url('../../images/brick01.jpg');
 }
-.Title {
+#backdropBorder {
+  min-height: 100vh;
+  width: 80%;
+  margin: auto;
+  border: 10px white solid;
+  border-radius: 100px;
+  background-image: url('../../images/parchment01.jpg');
+  background-size: 100% 100%;
+
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#backdrop {
+  min-height: 100vh;
+  background-image: url('../../images/runicBorder.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+#Title {
+  padding-top: 65px;
   width: 100%;
+  font-size: 1.8em;
+}
+#TurnCounter {
+  padding-top: 5px;
+  width: 100%;
+  font-size: 1.2em;
 }
 #LogDisplay {
-  font-size: .6em;
+  padding-top: 10px;
+  font-size: 0.8em;
 }

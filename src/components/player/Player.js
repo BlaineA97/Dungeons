@@ -198,11 +198,13 @@ class Player extends Component {
     return (
       <div id="Player">
           {characterName}
+          
         <div id="PlayerHitPoint">
           <div id="PlayerHitPoint-bar" style={{width: `${this.state.currentHpPercentage}%`}}>
           </div>
           <div id="PlayerHitPoint-numbers"> {this.props.playerHp} / {this.props.playerMaxHp} </div>
         </div>
+
         <div id="Portrait">
           <button id="leftButton" className="playerPortraitButton" onClick={this.handlePreviousPortraitClick} > {"<"} </button>
           <img
@@ -211,6 +213,7 @@ class Player extends Component {
           />
           <button id="rightButton" className="playerPortraitButton" onClick={this.handleNextPortraitClick}> {">"} </button>
         </div>
+
         {controls}
       </div>
     );

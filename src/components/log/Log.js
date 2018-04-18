@@ -15,10 +15,14 @@ class Log extends Component {
     updatedLogDisplay.reverse();
     return (
       <div id="Log">
-        <p id="Title">Battle Log</p>
-        <p>Turn: {this.props.turnNumber}</p>
-        <div id="LogDisplay">
-          <ul>{updatedLogDisplay}</ul>
+        <div id='backdrop'>
+          <div id='backdropBorder'>
+            <div id="Title">Battle Log</div>
+            <div id="TurnCounter">Turn: {this.props.turnNumber}</div>
+            <div id="LogDisplay">
+              <ul>{updatedLogDisplay}</ul>
+            </div>
+          </div>
         </div>
       </div>
     );

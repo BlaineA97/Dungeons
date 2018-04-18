@@ -84,16 +84,19 @@ class Enemy extends Component {
     return (
       <div id="Enemy">
         <div id="EnemyName">{this.props.enemyName}</div>
+
         <div id="EnemyHitPoint">
           <div id="EnemyHitPoint-bar" style={{width: `${this.state.currentHpPercentage}%`}}>
-            {this.props.enemyHp} / {this.props.enemyMaxHp}
           </div>
+          <div id="EnemyHitPoint-numbers">             {this.props.enemyHp} / {this.props.enemyMaxHp}</div>
         </div>
+
         <div id="Portrait">
           <img
             id="enemyPortrait"
             src={require(`../../images/${this.props.enemyPortrait}`)} alt={`${this.props.enemyName + " Image"}`} />
         </div>
+
       </div>
     );
   }
