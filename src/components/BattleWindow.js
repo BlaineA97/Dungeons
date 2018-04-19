@@ -50,6 +50,12 @@ class BattleWindow extends Component {
     // playerWarriorMale: https://www.pinterest.com/pin/416723771762590642/
     // playerRogueMale: https://www.pinterest.com/pin/AZhUtSL3iaZzV05uQ8ReOh99aiJ88oHkrwsmH9FgW_nKWooG9DHvq-4/
     // playerMageMale: https://www.pinterest.com/pin/144678206763562323/
+    // Dragon: https://www.pinterest.com/pin/AT2mveFlyGFWx3qvplFM6GKiJ-giv0z3-KwWUfJUDWbHCwBoZDX5iu8/
+    // Fairy: https://www.pinterest.com/pin/455426581051044426/
+    // Sorceress: https://www.pinterest.com/pin/355854808036811506/
+    // Werewolf: https://www.pinterest.com/pin/497788565036265309/
+    // Unicorn:https://www.pinterest.com/pin/517632550912667912/
+    // Mermaid: https://www.pinterest.com/pin/176907091591703700/
   }
 
   componentWillMount() {
@@ -147,7 +153,7 @@ class BattleWindow extends Component {
 
   enemyGenerator() {
     const enemyUnicorn = { name: "Unicorn", hp: 100, portrait: "enemyUnicorn.jpg" }
-    const enemyDragon = { name: "Dragon", hp: 150, portrait: "enemyDragon.jpg" }
+    const enemyDragon = { name: "Dragon", hp: 150, portrait: "newdragon.jpg" }
     const enemyMermaid = { name: "Mermaid", hp: 80, portrait: "enemyMermaid.jpg" }
     const enemyWerewolf = { name: "Werewolf", hp: 120, portrait: "enemyWerewolf.jpg" }
     const enemyFairy = { name: "Fairy", hp: 40, portrait: "enemyFairy.jpg" }
