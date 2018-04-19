@@ -8,8 +8,18 @@
   width: 100%;
 }
 #PlayerName {
-  width: 100%;
-  margin-top: 10px;
+  margin-top: 20px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  border: 1px gray solid;
+  border-radius: 75px;
+  background-color: darkgray;
+  box-shadow: 2px 2px black;
+  font-size: 1.2em;
+  opacity: 0.8;
 }
 #PlayerNameInput, {
   margin-left: 10px;
@@ -19,7 +29,10 @@
   font-size: 1.5em;
 }
 #PlayerNameFullSize:hover {
-  color: white;
+  color: lightgray;
+  background-color: gray;
+  box-shadow: 2px 2px gray;
+  border-radius: 75px;
   cursor: pointer;
 }
 #PlayerNameSubmit {
@@ -41,6 +54,8 @@
   transition: width .5s linear;
   position: relative;
   margin: 10px;
+  border: 1px black solid;
+  box-shadow: 2px 2px black;
 }
 #PlayerHitPoint-bar {
   background: #c54;
@@ -50,12 +65,13 @@
 }
 #PlayerHitPoint-numbers {
   position: relative;
-  margin-top: 10px;
-  z-index: 10;
+  margin-top: -24px;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  width: 25%;
+  font-size: 1.5em;
 }
 
 #Portrait {
@@ -63,6 +79,7 @@
   padding-bottom: 40px;
   border-radius: 100%;
   display: flex;
+  align-items: center;
 }
 #playerPortrait {
   min-width: 200px;
@@ -75,9 +92,41 @@
   margin-left: auto;
   margin-right: auto;
   border: 3px gray solid;
+  box-shadow: 3px 3px;
+
 }
 .playerPortraitButton {
+  -webkit-transition-duration: 0.1s; /* Safari */
+  transition-duration: 0.1s;
+  background-color: #F4595B;
+  border-radius: 8px;
+  border-bottom: 4px solid #C24648;
+  color: white;
+  font-size: 16px;
+  font-family: 'Oxygen', sans-serif;
+  cursor: pointer;
+  width: 10%;
+  height: 10%;
+  padding: 10px;
   margin: auto;
+  outline: none;
+  border: 1px black solid;
+  box-shadow: 2px 2px black;
+}
+.playerPortraitButton:hover {
+  background-color: #FF7375;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Oxygen', sans-serif;
+  outline: none;
+}
+.playerPortraitButton:active {
+  background-color: #C24648;
+  color: #CCC;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Oxygen', sans-serif;
+  outline: none;
 }
 #leftButton{
 }
@@ -105,12 +154,16 @@
   width: 50%;
   margin: 5px;
   padding: 10px;
+  outline: none;
+  border: 1px black solid;
+  box-shadow: 2px 2px black;
 }
 .playerButton:hover {
   background-color: #FF7375;
   display: inline-block;
   font-size: 16px;
   font-family: 'Oxygen', sans-serif;
+  outline: none;
 }
 .playerButton:active {
   background-color: #C24648;

@@ -22,6 +22,8 @@
   transition: width .5s linear;
   position: relative;
   margin: 10px;
+  border: 1px black solid;
+  box-shadow: 2px 2px black;
 }
 #EnemyHitPoint-bar {
   background: #c54;
@@ -31,12 +33,13 @@
 }
 #EnemyHitPoint-numbers {
   position: relative;
-  margin-top: 10px;
-  z-index: 10;
+  margin-top: -24px;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  width: 25%;
+  font-size: 1.5em;
 }
 
 #enemyPortrait {
@@ -50,6 +53,7 @@
   margin-left: auto;
   margin-right: auto;
   border: 3px gray solid;
+  box-shadow: 3px 3px;
 }
 #enemyPortrait {
 

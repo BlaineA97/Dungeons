@@ -198,7 +198,7 @@ class Player extends Component {
     return (
       <div id="Player">
           {characterName}
-          
+
         <div id="PlayerHitPoint">
           <div id="PlayerHitPoint-bar" style={{width: `${this.state.currentHpPercentage}%`}}>
           </div>

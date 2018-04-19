@@ -9,10 +9,12 @@ class Log extends Component {
     }
   }
 
+
   render() {
     let logDisplay = this.props.completeLog
     let updatedLogDisplay = logDisplay.map((item) => <p key={item.id}>{item}</p>);
     updatedLogDisplay.reverse();
+
     return (
       <div id="Log">
         <div id='backdrop'>
