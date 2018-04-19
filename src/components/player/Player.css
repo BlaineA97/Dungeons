@@ -6,7 +6,6 @@
 #Player {
   min-height: 100vh; /* Allows the footer to exist in the proper place */
   width: 100%;
-  border: red solid 1px;
 }
 #PlayerName {
   width: 100%;
@@ -20,7 +19,7 @@
   font-size: 1.5em;
 }
 #PlayerNameFullSize:hover {
-  color: lightblue;
+  color: white;
   cursor: pointer;
 }
 #PlayerNameSubmit {
@@ -60,7 +59,8 @@
 }
 
 #Portrait {
-  padding-top: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
   border-radius: 100%;
   display: flex;
 }
@@ -74,6 +74,7 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  border: 3px gray solid;
 }
 .playerPortraitButton {
   margin: auto;

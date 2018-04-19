@@ -13,27 +13,26 @@
 }
 
 #BattleWindow {
-  margin-top: 25px;
   min-height: 100vh; /* Allows the footer to exist in the proper place */
   width: 100%;
   display: flex;
   justify-content: space-around;
   vertical-align: middle;
   text-align: center;
-  border: red solid 1px;
+  background-image: url('../images/forest01.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 #LeftWindow {
   flex-grow: 2;
   min-width: 300px;
-  border: blue solid 1px;
 }
 #CenterWindow {
   flex-grow: 1;
-  min-width: 200px;
-  border: yellow solid 1px;
+  min-width: 300px;
 }
 #RightWindow {
   flex-grow: 2;
   min-width: 300px;
-  border: green solid 1px;
 }

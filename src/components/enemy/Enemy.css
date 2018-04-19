@@ -6,7 +6,6 @@
 #Enemy {
   min-height: 100vh; /* Allows the footer to exist in the proper place */
   width: 100%;
-  border: red solid 1px;
 }
 #EnemyName {
   width: 90%;
@@ -50,6 +49,7 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  border: 3px gray solid;
 }
 #enemyPortrait {
 
