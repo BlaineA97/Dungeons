@@ -50,6 +50,8 @@ class BattleWindow extends Component {
     // playerWarriorMale: https://www.pinterest.com/pin/416723771762590642/
     // playerRogueMale: https://www.pinterest.com/pin/AZhUtSL3iaZzV05uQ8ReOh99aiJ88oHkrwsmH9FgW_nKWooG9DHvq-4/
     // playerMageMale: https://www.pinterest.com/pin/144678206763562323/
+
+    // Enemies Art by Anne Stokes
     // Dragon: https://www.pinterest.com/pin/AT2mveFlyGFWx3qvplFM6GKiJ-giv0z3-KwWUfJUDWbHCwBoZDX5iu8/
     // Fairy: https://www.pinterest.com/pin/455426581051044426/
     // Sorceress: https://www.pinterest.com/pin/355854808036811506/

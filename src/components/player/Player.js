@@ -29,7 +29,7 @@ class Player extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) { // Checks if Player or Enemy is dead
-    if (this.props.playerHp != prevProps.playerHp) {
+    if (this.props.playerHp !== prevProps.playerHp) {
       let newHpPercentage = this.props.playerMaxHp - (this.props.playerMaxHp - this.props.playerHp)
       this.setState({
         currentHpPercentage: newHpPercentage
@@ -114,7 +114,6 @@ class Player extends Component {
   }
   handleNextPortraitClick() {
     const allPortraits = this.state.playerPortraitList;
-    const currentPortraitKey = this.state.portraitKey;
     for (let i = 0; i < this.state.playerPortraitList.length; i++) {
       if (allPortraits[i] === allPortraits[this.state.portraitKey]) {
         console.log('Current Key: '+this.state.portraitKey+' | MATCH: '+i)
@@ -129,7 +128,6 @@ class Player extends Component {
   }
   handlePreviousPortraitClick() {
     const allPortraits = this.state.playerPortraitList;
-    const currentPortraitKey = this.state.portraitKey;
     for (let i = 0; i < this.state.playerPortraitList.length; i++) {
       if (allPortraits[i] === allPortraits[this.state.portraitKey]) {
         if ((i - 1) < 0) {
