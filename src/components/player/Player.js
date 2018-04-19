@@ -17,6 +17,7 @@ class Player extends Component {
     this.handleFleeClick = this.handleFleeClick.bind(this);
     this.handleEndClick = this.handleEndClick.bind(this);
     this.setupPlayerPortrait = this.setupPlayerPortrait.bind(this);
+    this.setupPlayerName = this.setupPlayerName.bind(this);
     this.handleNextPortraitClick = this.handleNextPortraitClick.bind(this);
     this.handlePreviousPortraitClick = this.handlePreviousPortraitClick.bind(this);
     this.handlePlayerNameInputChange = this.handlePlayerNameInputChange.bind(this);
@@ -26,6 +27,7 @@ class Player extends Component {
 
   componentWillMount() {
     this.setupPlayerPortrait()
+    this.setupPlayerName()
   }
 
   componentDidUpdate(prevProps, prevState) { // Checks if Player or Enemy is dead
@@ -110,8 +112,18 @@ class Player extends Component {
       playerPortraitList: playerPortraitArray,
       portraitKey: randomStarterPortrait
     })
-
   }
+
+  setupPlayerName() {
+    let randomStarterName;
+    const playerRandomNames = ['Soulcaster', 'Stormsinger', 'Butcher', 'Ghostwalker', 'Magehunter', 'Harbinger']
+    randomStarterName = this.props.rollDice(playerRandomNames.length)
+    randomStarterName = playerRandomNames[randomStarterName]
+    this.setState({
+      playerName: randomStarterName
+    })
+  }
+
   handleNextPortraitClick() {
     const allPortraits = this.state.playerPortraitList;
     for (let i = 0; i < this.state.playerPortraitList.length; i++) {
